@@ -2,7 +2,7 @@
 Trabalho de Conclusão de Curso em Informática <br>
 Sistema de Integração Empresa-Candidato (SIEC)
 # Para clonar o projeto
-* No terminal do vs code, digite "git clone https://github.com/Mah-Senger/seminarioLTP.git" (sem aspas)
+* No terminal do vs code, digite "git clone https://github.com/Mah-Senger/SIEC.git" (sem aspas)
 * É importante conferir se o terminal ja ta na pasta q vc quer clonar o projeto
 
 # Para fazer o push (de volta para o github)
