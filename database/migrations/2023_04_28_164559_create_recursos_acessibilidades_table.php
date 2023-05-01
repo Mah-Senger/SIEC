@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('recursos_acessibilidades', function (Blueprint $table) {
             $table->id();
+            $table->boolean('comunicacaoLibras');
+            $table->boolean('banheirosAcessiveis');
+            $table->boolean('corredoresAcessiveis');
+            $table->boolean('rampas');
+            $table->boolean('elevadores');
+            $table->boolean('contBraile');
+            $table->boolean('espacoAmploParaLocomocao');
+            $table->foreignId('idUsuario')->references('id')->on('usuarios')->onDelete('cascade');
             $table->timestamps();
         });
     }
