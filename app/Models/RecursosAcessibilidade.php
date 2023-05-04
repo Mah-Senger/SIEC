@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class RecursosAcessibilidade extends Model
 {
     use HasFactory;
+
+    protected $fillable=[
+        'funcLibras',
+        'banheirosAcessiveis',
+        'corredoresAcessiveis',
+        'rampas',
+        'elevadores',
+        'contBraile',
+        'espacoAmploParaLocomocao',
+    ];
 }
