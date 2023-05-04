@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
+            $table->string('ruaEnd');
+            $table->string('numEnd');
+            $table->string('bairroEnd');
+            $table->string('cepEnd');
+            $table->string('objHistEmpresa');
+            $table->string('cnpj');
+            $table->foreignId('idUsuario')->references('id')->on('usuarios')->onDelete('cascade');
             $table->timestamps();
         });
     }

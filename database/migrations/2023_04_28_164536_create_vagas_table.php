@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('vagas', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo');
+            $table->string('descricao');
+            $table->string('requisitosHabilidades');
+            $table->double('salario');
+            $table->double('cargaHoraria');
+            $table->integer('tempoContrato');
+            $table->string('periodoPagamento');
+            $table->foreignId('idUsuario')->references('id')->on('usuarios')->onDelete('cascade');
             $table->timestamps();
         });
     }
