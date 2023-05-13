@@ -5,11 +5,15 @@
 .section-padding{
     padding: 100px 0;
 }
+.carousel{
+    margin-top: -100px;
+}
 .carousel-item{
-    height: 100vh;
+    height: 100%;
     min-height:300px;
 }
 .carousel-caption{
+    height: 50%;
     bottom:220px;
     z-index:2;
 }
@@ -19,6 +23,7 @@
     text-transform:uppercase;
     letter-spacing:2px;
     margin-top:25px;
+    color: #000;
 }
 .carousel-caption p{
     width: 70%;
@@ -26,6 +31,7 @@
     font-size:15px;
     line-height: 1.9;
     font-family:"Roboto";
+    color: #000;
 }
 .carousel::before{
     content: '';
@@ -34,7 +40,9 @@
     height: 100%;
     top:0;
     left:0;
-    background:rgba(0,0,0,0.7);
+    background-image: url("https://wallpapers.com/images/high/corner-building-for-4k-white-background-tsx7c82luhg36ygy.webp");
+    background-size: 100%;
+    background-repeat: no-repeat;
     z-index:1;
 }
 .navbar-nav a{
@@ -63,7 +71,10 @@
 .service .card-body i{
     font-size: 100px;
 }
-
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    filter: invert(1);
+    margin-top: 50%;
+}
 
 
 /*===css responsivo ===*/
