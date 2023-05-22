@@ -13,17 +13,27 @@
     min-height:300px;
 }
 .carousel-caption{
-    height: 50%;
+    height: 60%;
     bottom:220px;
     z-index:2;
 }
 .carousel-caption h5{
     font-family: 'PT Serif', serif;
-    font-size:45px;
+    font-size:4em;
     text-transform:uppercase;
     letter-spacing:2px;
-    margin-top:25px;
-    color: #000;
+    margin-top:20px;
+    color: #265894;
+    font-style: italic;
+    font-style: bold;
+}
+.carousel-caption h6{
+    font-family: 'PT Serif', serif;
+    font-size:1.8em;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color: #265894;
+    font-style: italic;
 }
 .carousel-caption p{
     width: 70%;
@@ -40,7 +50,8 @@
     height: 100%;
     top:0;
     left:0;
-    background-image: url("https://wallpapers.com/images/high/corner-building-for-4k-white-background-tsx7c82luhg36ygy.webp");
+    background-image: url("/images/fundoTelaInicial2.jpg");
+    opacity: 0.6;
     background-size: 100%;
     background-repeat: no-repeat;
     z-index:1;
