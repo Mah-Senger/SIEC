@@ -16,5 +16,6 @@ class Empresa extends Model
         'cepEnd',
         'objHistEmpresa',
         'cnpj',
+        'idUsuario'
     ];
 }

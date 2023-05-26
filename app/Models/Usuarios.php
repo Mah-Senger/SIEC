@@ -15,5 +15,6 @@ class Usuarios extends Model
         'senha',
         'telefone',
         'cidade',
+        'tipoUser'
     ];
 }
