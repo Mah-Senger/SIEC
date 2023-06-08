@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('senha');
             $table->string('telefone');
             $table->string('cidade');
+            $table->string('tipoUser');
             $table->timestamps();
         });
     }
