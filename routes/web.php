@@ -25,4 +25,8 @@ Route::get('/empresa/cadastro', [App\Http\Controllers\EmpresaController::class, 
 
 Route::post('/empresa/create', [App\Http\Controllers\EmpresaController::class, 'createEmpresa'])->name('empresa.create');
 
+Route::get('/candidato/cadastro', [App\Http\Controllers\CandidatoController::class, 'showCadastroCandidato'])->name('candidato.showCadastro');
+
+Route::post('/candidato/create', [App\Http\Controllers\CandidatoController::class, 'createCandidato'])->name('candidato.create');
+
 
