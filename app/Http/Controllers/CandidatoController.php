@@ -21,7 +21,7 @@ class CandidatoController extends Controller
             'emailCandidato' => ['required', 'string'],
             'senhaCandidato' => ['string', 'required', 'min:8', 'max:20'],
             'telefoneCandidato' => ['string', 'required'],
-            'cidadeECandidato' => ['required', 'string'],
+            'cidadeCandidato' => ['required', 'string'],
             'cpfCandidato' => ['required', 'string', 'max:14', 'min:14'],
             'experienciaCandidato' => ['required', 'string'],
             'idiomasCandidato' => ['required', 'string'],
