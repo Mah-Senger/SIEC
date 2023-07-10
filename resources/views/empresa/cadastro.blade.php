@@ -1,5 +1,19 @@
-<br><br><br><br><br><br>
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INICIO</title>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=PT+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+</head>
+<body>
 <x-header />
+<br><br><br><br><br><br>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
