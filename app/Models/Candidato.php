@@ -15,5 +15,6 @@ class Candidato extends Model
         'idiomas',
         'formacao',
         'formacaoDescricao',
+        'idUsuario'
     ];
 }
