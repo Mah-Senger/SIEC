@@ -55,4 +55,12 @@ class EmpresaController extends Controller
             return redirect()->back();
         }
     }
+
+    public function inicioCursoAlert(){
+        return view('empresa.inicioCurso');
+    }
+
+    public function finalCursoAlert(){
+        return view('empresa.finalCurso');
+    }
 }
