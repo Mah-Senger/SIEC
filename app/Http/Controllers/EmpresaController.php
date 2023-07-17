@@ -63,4 +63,13 @@ class EmpresaController extends Controller
     public function finalCursoAlert(){
         return view('empresa.finalCurso');
     }
+
+    public function showDetalhesEmpresa($id){
+        if(!$empresa = Empresa::find($id)){
+            return redirect()->back();
+        }
+        $usuario = Usuarios::find($empresa->idUsuario);
+        $usuario->nome = ucwords ($usuario->nome);
+        return view('empresa.show', compact('empresa', 'usuario'));
+    }
 }
