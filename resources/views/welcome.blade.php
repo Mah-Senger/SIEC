@@ -25,8 +25,7 @@
         <div class="carousel-caption">
           <h5 class="font-weight-bold font-italic">SIEC</h5>
           <h6 class="font-weight-bold">Sistema de integração <br> empresa-candidato</h6>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+          <p>Sabe quando você precisa encontrar a empresa ideal para você, com vagas e recursos de acessibilidade que se encaixam no seu perfil? Ou quando sua empresa deseja encontrar pessoas com deficiência para as vagas de emprego que estão sendo ofertadas? O Sistema de Integração Empresa-Candidato chegou para solucionar esses problemas. Cadastre-se e venha fazer parte da equipe SIEC você também. </p>
           <p><a href="#"><button type="button" class="btn btn-primary btn-lg mt-4 btn-dark pt-3" style="background-color: #9AA7B2; border: none; color: #1B1B1B; width: 50%; font-style: bold; font-size: 1.4em; border: solid #89898C 1px;">CADASTRE-SE</button></a></p>
         </div>
       </div>
