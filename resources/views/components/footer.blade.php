@@ -13,7 +13,7 @@
       </div>
       <div class="d-flex flex-wrap align-items-center">
         <div>
-            <a href="#"><img alt="logo" src="{{asset('images/logo2Rodape.svg')}}" width="50px" /></a>
+            <a href="mailto:suporte.siec@gmail.com?subject=Erro/duvida/sugestão de SIEC"><img alt="logo" src="{{asset('images/logo2Rodape.svg')}}" width="50px" /></a>
         </div>
         <div>
             <a href="#"><img alt="logo" src="{{asset('images/logo3Rodape.svg')}}" width="50px" /></a>
