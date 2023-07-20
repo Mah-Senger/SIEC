@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\DB;
 class InteresseVagasController extends Controller
 {
     public function createInteresseVaga($id, $idUsuario){
+        $validacao = InteresseVagas::where('idVaga', '=', "$id")->where('idCandidato', '=', "$idUsuario")->get();
+        foreach($validacao as $valid){
+            if(isset($valid->idCandidato)){
+                return redirect()->back()->with('erro', 'Manifestação de interesse enviada com sucesso!');
+            }
+        }
+        
         $interesse = InteresseVagas::create([
             'idVaga' => $id,
             'idCandidato' => $idUsuario,

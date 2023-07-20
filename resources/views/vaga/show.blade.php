@@ -14,7 +14,7 @@
     <style></style>
     <script>
         function confirmarManifestacao() {
-            if (confirm("Realmente deseja manifestar interesse em {{$vaga->titulo}}? \nA Empresa responsável será notificada.") == true) {
+            if (confirm("Realmente deseja manifestar interesse em {{$vaga->titulo}}? \nA Empresa responsável será notificada e essa ação não poderá ser desfeita.") == true) {
                 window.location.href = "/vaga/interesseCreate/{{$vaga->id}}/3";
             }
         }
@@ -31,12 +31,21 @@
                 <p>Entraremos em contato com {{$empresa->nome}} para comunicar o seu interesse em {{$vaga->titulo}}. Estamos torcendo para que essa vaga seja sua. </p>
             </div>
         @endif
+        @if(session('erro'))
+            <div class="alert alert-danger" role="alert">
+                Você já manifestou interesse nessa vaga. Não é possível desfazer essa operação!
+            </div>
+        @endif
         <section class="main-header">
             <div class="main-header-titulo">
                 <h1>{{$vaga->titulo}}</h1>
             </div>
             <div class="main-header-button">
-                <button onclick="confirmarManifestacao()">Manifestar interesse</button>
+                @if(isset($validacaoInteresse))
+                    <button type="button" class="btn btn-secondary btn-lg" disabled >Manifestar interesse</button>
+                @else
+                    <button onclick="confirmarManifestacao()">Manifestar interesse</button>
+                @endif
             </div>
         </section>
         <section class="main-conteudo">
