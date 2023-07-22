@@ -21,6 +21,14 @@ class VagaController extends Controller
             $habilidades = explode(";", $vaga->requisitosHabilidades);
         }
         $empresa = Usuarios::find($vaga->idUsuario);
+        $idUsuario = 3;
+        $validacao = InteresseVagas::where('idVaga', '=', "$id")->where('idCandidato', '=', "$idUsuario")->get();
+        foreach($validacao as $valid){
+            if(isset($valid->idCandidato)){
+                $validacaoInteresse = $valid->idCandidato;
+                return view('vaga.show', compact('vaga', 'habilidades', 'empresa', 'validacaoInteresse'));
+            }
+        }
         return view('vaga.show', compact('vaga', 'habilidades', 'empresa'));
     }
 
