@@ -10,7 +10,7 @@
                 <a class="nav-link" style="font-family: 'Roboto', sans-serif; font-size: 1.2em;" href="home">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" style="font-family: 'Roboto', sans-serif; font-size: 1.2em;" href="quemsomos">Quem somos</a>
+                <a class="nav-link" style="font-family: 'Roboto', sans-serif; font-size: 1.2em;" href="/#time">Quem somos</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" style="font-family: 'Roboto', sans-serif; font-size: 1.2em;" href="{{ route('login') }}">Entrar</a>
