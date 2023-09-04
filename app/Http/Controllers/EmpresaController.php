@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Usuarios;
 use App\Models\Empresa;
 use App\Models\Candidato;
+use App\Models\Vagas;
+use App\Models\RecursosAcessibilidade;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -72,4 +74,55 @@ class EmpresaController extends Controller
         $usuario->nome = ucwords ($usuario->nome);
         return view('empresa.show', compact('empresa', 'usuario'));
     }
+
+    public function showCandidatos(){
+        //Testando a compatibilidade entre empresa e candidatos
+        $idEmpresa = 1;
+        $request = Empresa::find($idEmpresa);
+        $requestAcess = RecursosAcessibilidade::where("idUsuario", '=', $idEmpresa)->get()[0];
+        $vagas = Vagas::where('idUsuario', '=', "$idEmpresa")->get();
+        $requestCandidatos = Candidato::all();
+        $candidatosCompativeisEmpresa = array();
+
+        foreach($requestCandidatos as $candidato){
+            //$requisitosHabilidadesVagas = explode(";", $vagas->requisitosHabilidades);
+            $requisitosHabilidadesCandidato = explode(";", $candidato->habilidades);
+            $requestAcessCandidato = RecursosAcessibilidade::where("idUsuario", '=', $candidato->idUsuario)->take(1)->get()[0];
+            $count = 0;
+            $array = array('comunicacaoLibras', 'banheirosAcessiveis', 'corredoresAcessiveis', 'rampas', 'elevadores', 'contBraile', 'espacoAmploParaLocomocao');
+            foreach($array as $indice){
+                if($requestAcessCandidato[$indice] == $requestAcess[$indice]){
+                    $count++;
+                }
+            }
+            if($count >= 3){
+                array_push($candidatosCompativeisEmpresa, $candidato);
+            }
+        }
+
+        /* Finalizado o teste de compatibilidade entre a empresa e os candidatos. Falta apenas testar as habilidades das vagas da empresa
+        com os candidatos já selecionados*/
+        foreach ($vagas as $vaga){
+            foreach ($candidatosCompativeisEmpresa as $candidato){
+                $requisitosHabilidadesVaga = explode(";", $vaga->requisitosHabilidades);
+                print_r($requisitosHabilidadesVaga);
+                echo "<br>";
+                $requisitosHabilidadesCandidato = explode(";", $candidato->habilidades);
+                print_r($requisitosHabilidadesCandidato);
+                echo "<hr>";
+                $count = 0;
+                $array = array('comunicacaoLibras', 'banheirosAcessiveis', 'corredoresAcessiveis', 'rampas', 'elevadores', 'contBraile', 'espacoAmploParaLocomocao');
+                foreach($array as $indice){
+                    if($requestAcessCandidato[$indice] == $requestAcess[$indice]){
+                        $count++;
+                    }
+                }
+                if($count >= 3){
+                    array_push($candidatosCompativeisEmpresa, $candidato);
+                }
+            }
+            
+        }
+    }
+                
 }
