@@ -15,6 +15,10 @@ class EmpresaController extends Controller
         return view('empresa.cadastro');
     }
 
+    public function showCadastroEmpresa2(){
+        return view('empresa.create');
+    }
+
     public function createEmpresa(Request $request){
         $rules = [
             'nomeEmpresa' => ['required', 'string', 'max:255'],
