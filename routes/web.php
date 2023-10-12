@@ -47,3 +47,4 @@ Route::get('/empresa/showCandidatos', [App\Http\Controllers\EmpresaController::c
 
 Route::get('/empresa/showTodosCandidatos', [App\Http\Controllers\EmpresaController::class, 'showTodosCandidatos'])->name('empresa.showTodosCandidatos');
 
+Route::get('/empresa/showInteresseVagas', [App\Http\Controllers\InteresseVagasController::class, 'showInteresseVagas'])->name('empresa.showInteresseVagas');

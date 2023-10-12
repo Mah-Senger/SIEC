@@ -28,4 +28,25 @@ class InteresseVagasController extends Controller
 
         return redirect()->back()->with('status', 'Manifestação de interesse enviada com sucesso!');
     }
+
+    public function showInteresseVagas(){
+        $vagasEmpresa = Vagas::where('idUsuario', '=', '1')->get();
+        $manifestacoesVagasEmpresa = array();
+        
+        foreach($vagasEmpresa as $vaga){
+            $interesseVagas = InteresseVagas::where('idVaga', '=', $vaga->id)->get();
+            foreach($interesseVagas as $interesse){
+                $candidato = Candidato::where('id', '=', $interesse->idCandidato)->get()[0];
+                $usuario = Usuarios::where('id', '=', $candidato->id)->get()[0];
+                $vaga = Vagas::where('id', '=', $interesse->idVaga)->get()[0];
+                $infos = ['idVaga' => $interesse->idVaga,
+                        'idCandidato' => $interesse->idCandidato,
+                        'nomeCandidato' => $usuario->nome,
+                        'tituloVaga' => $vaga->titulo];
+                array_push($manifestacoesVagasEmpresa, $infos);
+            }
+        }
+        echo "<pre>";
+        print_r($manifestacoesVagasEmpresa);
+    }
 }
