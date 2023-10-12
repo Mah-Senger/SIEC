@@ -43,3 +43,5 @@ Route::get('/vaga/interesseCreate/{id}/{idUsuario}', [App\Http\Controllers\Inter
 
 Route::get('/empresa/showCandidatos', [App\Http\Controllers\EmpresaController::class, 'showCandidatos'])->name('empresa.showCandidatos');
 
+Route::get('/empresa/showTodosCandidatos', [App\Http\Controllers\EmpresaController::class, 'showTodosCandidatos'])->name('empresa.showTodosCandidatos');
+

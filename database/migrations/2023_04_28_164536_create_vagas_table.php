@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('descricao');
-            $table->string('requisitosHabilidades');
             $table->double('salario');
             $table->double('cargaHoraria');
             $table->integer('tempoContrato');
