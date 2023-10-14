@@ -152,5 +152,11 @@ class EmpresaController extends Controller
             }
             dd($usuariosCandidatos);
         }
+
+        public function verVagasCadastradas(){
+            $idEmpresa = 2;
+            $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
+            dd($vagas);
+        }
             
     }
