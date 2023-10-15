@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuarios;
 use App\Models\Empresa;
 use App\Models\Candidato;
+use App\Models\Vagas;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,5 +53,20 @@ class CandidatoController extends Controller
             ]);
             return redirect()->back();
         }
+    }
+
+    public function verTodasVagas(){
+        $idCandidato = 1;
+        $vagas = Vagas::all();
+        $todasVagas = array();
+
+        foreach($vagas as $vaga){
+            $empresa = Usuarios::where('id', '=', $vaga->idUsuario)->get()[0];
+            $infos = ['idVaga' => $vaga->id,
+                    'nomeVaga' => $vaga->titulo,
+                    'nomeEmpresa' => $empresa->nome];
+            array_push($todasVagas, $infos);
+        }
+        dd($todasVagas);
     }
 }
