@@ -19,6 +19,10 @@ class EmpresaController extends Controller
         return view('empresa.cadastro');
     }
 
+    public function showCadastroEmpresa2(){
+        return view('empresa.create');
+    }
+
     public function createEmpresa(Request $request){
         $rules = [
             'nomeEmpresa' => ['required', 'string', 'max:255'],
@@ -180,6 +184,12 @@ class EmpresaController extends Controller
                 }
             }
             dd($usuariosCandidatos);
+        }
+
+        public function verVagasCadastradas(){
+            $idEmpresa = 2;
+            $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
+            dd($vagas);
         }
             
     }
