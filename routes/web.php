@@ -51,3 +51,6 @@ Route::get('/empresa/showTodosCandidatos', [App\Http\Controllers\EmpresaControll
 
 Route::get('/empresa/verVagasCadastradas', [App\Http\Controllers\EmpresaController::class, 'verVagasCadastradas'])->name('empresa.verVagasCadastradas');
 
+Route::get('/empresa/dashboard', function () {
+    return view('usuario.dashboard');
+});
