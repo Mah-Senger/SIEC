@@ -77,12 +77,21 @@ class EmpresaController extends Controller
         return view('empresa.show', compact('empresa', 'usuario'));
     }
 
-    public function showCandidatos(){
+    public function selecionarVaga(){
+        $idEmpresa = 1;
+        $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
+        return view('empresa.selecionarVaga', compact('vagas'));
+    }
+
+    public function showCandidatos(Request $infosVaga){
         //Testando a compatibilidade entre empresa e candidatos
         $idEmpresa = 1;
         $request = Empresa::find($idEmpresa);
         $requestAcess = RecursosAcessibilidade::where("idUsuario", '=', $idEmpresa)->get()[0];
-        $vagas = Vagas::where('idUsuario', '=', "$idEmpresa")->get();
+        $requisitosVaga = RequisitosHabilidadesVagas::where("idVaga", '=', $infosVaga->vaga)->take(1)->get()[0];
+        print($requisitosVaga);
+        echo "<br><br>";
+        //$vagas = Vagas::where('idUsuario', '=', "$idEmpresa")->get();
         $requestCandidatos = Candidato::all();
         $candidatosCompativeisEmpresa = array();
         $candidatosIdeais = array();
@@ -101,8 +110,32 @@ class EmpresaController extends Controller
             }
         }
 
+        foreach ($candidatosCompativeisEmpresa as $candidato){
+            $requisitosHabilidadesCandidato = RequisitosHabilidadesCandidatos::where("idCandidato", '=', $candidato->id)->take(1)->get()[0];
+            $count = 0;
+            $array = array('comunicacaoOral', 'comunicacaoEscrita', 'habilidadesInterpessoais', 'trabalhoEmEquipe', 'lideranca', 'resolucaoDeConflitos', 'negociacao', 'tomadaDeDecisao', 'pensamentoCritico', 'solucaoDeProblemas', 'adaptabilidade', 'inovacao', 'gerenciamentoDeTempo', 'organizacao', 'planejamento', 'gerenciamentoDeProjetos', 'analiseDeDados', 'estatisticas', 'pesquisa', 'analiseDeMercado', 'gestaoDeRiscos', 'estrategiaDeNegocios', 'empreendedorismo', 'criatividade', 'empatia', 'resiliencia', 'autoconfianca', 'autocontrole', 'capacidadeDeMotivar', 'orientacaoParaResultados', 'foco', 'tomadaDeIniciativa', 'gerenciamentoDeRecursos', 'gerenciamentoDeOrcamento', 'tomadaDeDecisaoEtica', 'multitarefa', 'habilidadesDeApresentacao', 'pensamentoEstrategico', 'habilidadesAnaliticas', 'habilidadesDeResolucaoDeProblemasComplexos', 'habilidadesDeResolucaoDeProblemasSimples', 'habilidadesDeProgramacao', 'conhecimentoEmTecnologiaDaInformacao', 'conhecimentoEmMarketingDigital', 'conhecimentoEmAnaliseDeDados', 'conhecimentoEmSEO', 'conhecimentoEmDesignGrafico', 'conhecimentoEmGerenciamentoDeMidia', 'conhecimentoEmAprendizadoDeMaquina', 'conhecimentoEmInteligenciaArtificial');
+        
+            foreach($array as $indice){
+                if($requisitosVaga[$indice] == $requisitosHabilidadesCandidato[$indice]){
+                    $count++;
+                }elseif($requisitosVaga[$indice] == 0 && $requisitosHabilidadesCandidato[$indice] == 1){
+                    $count++;
+                }
+            }
+
+            if($count >= 3){
+                array_push($candidatosIdeais, $candidato);
+                print($requisitosHabilidadesCandidato);
+                echo "<br>";
+                print($count);
+                echo "<br>";
+            }
+        }
+
+        dd($candidatosIdeais);
+
         /* Finalizado o teste de compatibilidade entre a empresa e os candidatos. Falta apenas testar as habilidades das vagas da empresa
-        com os candidatos já selecionados*/
+        com os candidatos já selecionados
         foreach ($vagas as $vaga){
             foreach ($candidatosCompativeisEmpresa as $candidato){
                 $requisitosHabilidadesVaga = RequisitosHabilidadesVagas::where("idVaga", '=', $vaga->id)->take(1)->get()[0];
@@ -121,7 +154,7 @@ class EmpresaController extends Controller
 
                     }
                 }
-                dd($candidatosIdeais);
+                dd($candidatosIdeais);*/
         }
 
         public function showTodosCandidatos(){
