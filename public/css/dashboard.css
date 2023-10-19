@@ -17,8 +17,16 @@
   z-index: 99;
   transition: all 0.5s ease;
 }
+.conteudo{
+  margin-left: 78px;
+  padding: 30px;
+}
 .sidebar.open{
   width: 250px;
+}
+.conteudo.open{
+  margin-left: 250px;
+  padding: 30px;
 }
 .sidebar .logo-details{
     height: 60px;
@@ -49,7 +57,7 @@
   text-align: right;
 }
 .sidebar i{
-  color: #ffffff;
+  color: #000000;
   height: 60px;
   min-width: 50px;
   font-size: 28px;
@@ -113,7 +121,7 @@
   transform: translateY(-50%);
   font-size: 22px;
   background: #fdfdfd;
-  color: #ffffff;
+  color: #000000;
 }
 .sidebar li a{
     display: flex;
@@ -130,7 +138,7 @@
     background-color:#fff;
 }
 .sidebar li a .links_name{
-  color: #ffffff;
+  color: #000000;
   font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
@@ -184,7 +192,7 @@
 .sidebar li.profile .job{
   font-size: 15px;
   font-weight: 400;
-  color: #fff;
+  color: #000;
   white-space: nowrap;
 }
 .sidebar li.profile .job{
@@ -208,7 +216,7 @@
 }
 .home-section{
   position: relative;
-  background: #ffffff;
+  background: #000000;
   min-height: 100vh;
   top: 0;
   left: 78px;

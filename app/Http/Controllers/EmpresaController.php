@@ -82,23 +82,22 @@ class EmpresaController extends Controller
     }
 
     public function selecionarVaga(){
-        $idEmpresa = 1;
+        $idEmpresa = 2;
         $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
         return view('empresa.selecionarVaga', compact('vagas'));
     }
 
     public function showCandidatos(Request $infosVaga){
         //Testando a compatibilidade entre empresa e candidatos
-        $idEmpresa = 1;
+        $idEmpresa = 2;
         $request = Empresa::find($idEmpresa);
         $requestAcess = RecursosAcessibilidade::where("idUsuario", '=', $idEmpresa)->get()[0];
         $requisitosVaga = RequisitosHabilidadesVagas::where("idVaga", '=', $infosVaga->vaga)->take(1)->get()[0];
-        print($requisitosVaga);
-        echo "<br><br>";
         //$vagas = Vagas::where('idUsuario', '=', "$idEmpresa")->get();
         $requestCandidatos = Candidato::all();
         $candidatosCompativeisEmpresa = array();
         $candidatosIdeais = array();
+        $candidatosSelecionados = array();
 
         foreach($requestCandidatos as $candidato){
             $requestAcessCandidato = RecursosAcessibilidade::where("idUsuario", '=', $candidato->idUsuario)->take(1)->get()[0];
@@ -129,37 +128,18 @@ class EmpresaController extends Controller
 
             if($count >= 3){
                 array_push($candidatosIdeais, $candidato);
-                print($requisitosHabilidadesCandidato);
-                echo "<br>";
-                print($count);
-                echo "<br>";
             }
         }
-
-        dd($candidatosIdeais);
-
-        /* Finalizado o teste de compatibilidade entre a empresa e os candidatos. Falta apenas testar as habilidades das vagas da empresa
-        com os candidatos já selecionados
-        foreach ($vagas as $vaga){
-            foreach ($candidatosCompativeisEmpresa as $candidato){
-                $requisitosHabilidadesVaga = RequisitosHabilidadesVagas::where("idVaga", '=', $vaga->id)->take(1)->get()[0];
-                $requisitosHabilidadesCandidato = RequisitosHabilidadesCandidatos::where("idCandidato", '=', $candidato->id)->take(1)->get()[0];
-                $count = 0;
-                $array = array('comunicacaoOral', 'comunicacaoEscrita', 'habilidadesInterpessoais', 'trabalhoEmEquipe', 'lideranca', 'resolucaoDeConflitos', 'negociacao', 'tomadaDeDecisao', 'pensamentoCritico', 'solucaoDeProblemas', 'adaptabilidade', 'inovacao', 'gerenciamentoDeTempo', 'organizacao', 'planejamento', 'gerenciamentoDeProjetos', 'analiseDeDados', 'estatisticas', 'pesquisa', 'analiseDeMercado', 'gestaoDeRiscos', 'estrategiaDeNegocios', 'empreendedorismo', 'criatividade', 'empatia', 'resiliencia', 'autoconfianca', 'autocontrole', 'capacidadeDeMotivar', 'orientacaoParaResultados', 'foco', 'tomadaDeIniciativa', 'gerenciamentoDeRecursos', 'gerenciamentoDeOrcamento', 'tomadaDeDecisaoEtica', 'multitarefa', 'habilidadesDeApresentacao', 'pensamentoEstrategico', 'habilidadesAnaliticas', 'habilidadesDeResolucaoDeProblemasComplexos', 'habilidadesDeResolucaoDeProblemasSimples', 'habilidadesDeProgramacao', 'conhecimentoEmTecnologiaDaInformacao', 'conhecimentoEmMarketingDigital', 'conhecimentoEmAnaliseDeDados', 'conhecimentoEmSEO', 'conhecimentoEmDesignGrafico', 'conhecimentoEmGerenciamentoDeMidia', 'conhecimentoEmAprendizadoDeMaquina', 'conhecimentoEmInteligenciaArtificial');
-            
-                foreach($array as $indice){
-                    if($requisitosHabilidadesVaga[$indice] == $requisitosHabilidadesCandidato[$indice]){
-                        $count++;
-                    }
-                }
-                if($count >= 3){
-                        array_push($candidatosIdeais, $candidato);
-                }
-
-                    }
-                }
-                dd($candidatosIdeais);*/
+        foreach($candidatosIdeais as $candidato){
+            $usuario = Usuarios::where('id', '=', $candidato->idUsuario)->get()[0];
+            $infos = ['idUsuario' => $usuario->id,
+                    'nome' => $usuario->nome,
+                    'cidade' => $usuario->cidade,
+                    'formacao' => $candidato->formacao];
+            array_push($candidatosSelecionados, $infos);
         }
+        return view('empresa.showCandidatos', compact('candidatosSelecionados'));
+    }
 
         public function showTodosCandidatos(){
             $candidatos = Candidato::all();
@@ -183,13 +163,13 @@ class EmpresaController extends Controller
                     }
                 }
             }
-            dd($usuariosCandidatos);
+            return view('empresa.showTodosCandidatos', compact('usuariosCandidatos'));
         }
 
         public function verVagasCadastradas(){
             $idEmpresa = 2;
             $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
-            dd($vagas);
+            return view('empresa.verVagasCadastradas', compact('vagas'));
         }
             
     }
