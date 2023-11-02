@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title> Cadastro Inicial </title>
-    <link rel="stylesheet" href="pagina4.css">
+    <link rel="stylesheet" href="{{ asset('css/pagina4.css') }}">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>

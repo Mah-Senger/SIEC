@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title> Dashboard </title>
     <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="pagina19.css">
+    <link rel="stylesheet" href="{{ asset('css/pagina19.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=HK+Grotesk:wght@300&display=swap" rel="stylesheet">
    </head>
 <body>
     <div id="dashboard">
@@ -60,6 +62,8 @@
                <i class='bx bx-log-out' id="log_out" ></i>
            </li>
           </ul>
+        </div>
+        
         <!---candidatos-->
      <section class="candidatos" id="candidatos">
         <div class="container">
@@ -142,7 +146,32 @@
         </div>
      </section>
 
-        <!---javascript-->
-        <script src="js/pagina19.js"></script>
+<script>
+  let sidebar = document.querySelector(".sidebar");
+  let container = document.querySelector(".container");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    container.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    container.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+  </script>
     </body>
 </html>

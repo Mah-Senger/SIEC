@@ -9,18 +9,24 @@ body{
     background: var(--bg-color);
     color: var(--text-color);
 }
-section{
-padding: 200px 50%;
-}
 
 .container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, auto));
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    flex-wrap: wrap;
+    /*grid-template-columns: repeat(auto-fit, minmax(360px, auto));*/
     align-items:center;
     gap: 2rem;
     text-align: center;
     cursor: pointer;
-    padding-top: 2rem;
+    margin-left: 78px;
+    padding: 30px;
+}
+
+.container.open{
+    margin-left: 250px;
+    padding: 30px;
 }
 
 .box{

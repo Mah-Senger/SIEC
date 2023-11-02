@@ -56,3 +56,11 @@ Route::get('/empresa/selecionarVaga', [App\Http\Controllers\EmpresaController::c
 Route::get('/empresa/dashboard', function () {
     return view('usuario.dashboard');
 });
+
+Route::get('/empresa/pagina', function () {
+    return view('empresa.pagina19');
+});
+
+Route::get('/empresa/minicurso', function () {
+    return view('empresa.miniCurso');
+});
