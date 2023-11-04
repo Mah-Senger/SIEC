@@ -56,3 +56,19 @@ Route::get('/empresa/selecionarVaga', [App\Http\Controllers\EmpresaController::c
 Route::get('/empresa/dashboard', function () {
     return view('usuario.dashboard');
 });
+
+Route::get('pagina13', function () {
+    return view('candidato.pagina13');
+});
+
+Route::get('pagina4', function () {
+    return view('empresa.pagina4');
+});
+
+Route::get('pagina8', function () {
+    return view('empresa.pagina8');
+});
+
+Route::get('pagina2', function () {
+    return view('usuario.pagina2');
+});

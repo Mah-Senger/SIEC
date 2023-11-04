@@ -13,8 +13,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class EmpresaController extends Controller
-{
+class EmpresaController extends Controller{
+    
     public function showCadastroEmpresa(){
         return view('empresa.cadastro');
     }
@@ -141,35 +141,35 @@ class EmpresaController extends Controller
         return view('empresa.showCandidatos', compact('candidatosSelecionados'));
     }
 
-        public function showTodosCandidatos(){
-            $candidatos = Candidato::all();
-            $usuarios = Usuarios::where('tipoUser', '=', "candidato")->get();
-            $usuariosCandidatos = array();
-            foreach($candidatos as $candidato){
-                foreach ($usuarios as $usuario){
-                    if($usuario->id == $candidato->idUsuario){
-                        $infos = ['idUsuario' => $usuario->id, 
-                            'nome' => $usuario->nome, 
-                            'email' => $usuario->email, 
-                            'senha' => $usuario->senha,
-                            'telefone' => $usuario->telefone, 
-                            'cidade' => $usuario->cidade,
-                            'cpf' => $candidato->cpf, 
-                            'experiencia' => $candidato->experiencia, 
-                            'idiomas' => $candidato->idiomas,
-                            'formacao' => $candidato->formacao, 
-                            'formacaoDescricao' => $candidato->formacaoDescricao];
-                        array_push($usuariosCandidatos, $infos);
-                    }
+    public function showTodosCandidatos(){
+        $candidatos = Candidato::all();
+        $usuarios = Usuarios::where('tipoUser', '=', "candidato")->get();
+        $usuariosCandidatos = array();
+        foreach($candidatos as $candidato){
+            foreach ($usuarios as $usuario){
+                if($usuario->id == $candidato->idUsuario){
+                    $infos = ['idUsuario' => $usuario->id, 
+                    'nome' => $usuario->nome, 
+                    'email' => $usuario->email, 
+                    'senha' => $usuario->senha,
+                    'telefone' => $usuario->telefone, 
+                    'cidade' => $usuario->cidade,
+                    'cpf' => $candidato->cpf, 
+                    'experiencia' => $candidato->experiencia, 
+                    'idiomas' => $candidato->idiomas,
+                    'formacao' => $candidato->formacao, 
+                    'formacaoDescricao' => $candidato->formacaoDescricao];
+                    array_push($usuariosCandidatos, $infos);
                 }
             }
-            return view('empresa.showTodosCandidatos', compact('usuariosCandidatos'));
         }
-
-        public function verVagasCadastradas(){
-            $idEmpresa = 2;
-            $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
-            return view('empresa.verVagasCadastradas', compact('vagas'));
-        }
-            
+        return view('empresa.showTodosCandidatos', compact('usuariosCandidatos'));
     }
+
+    public function verVagasCadastradas(){
+        $idEmpresa = 2;
+        $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
+        return view('empresa.verVagasCadastradas', compact('vagas'));
+    }
+            
+}
