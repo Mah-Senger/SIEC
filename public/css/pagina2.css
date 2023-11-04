@@ -1,0 +1,48 @@
+.title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align:center;
+    font-family: 'Roboto', sans-serif;
+}
+.title h1{
+    color:#265894;
+}
+.card{
+    font-family: 'Roboto', sans-serif;
+    font-size:25px;
+    width:300px;
+    height:300px;
+    display: inline-block;
+    border-radius: 10px;
+    padding:15px 25px;
+    box-sizing:border-box;
+    cursor:pointer;
+    margin: 10px 15px;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.5s;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 10px rgb(168, 168, 168);
+
+    
+}
+.card:hover{
+    transform: translateY(-10px);
+}
+.button {
+    background-color: #265894;
+    font-weight: bold;
+    padding: 12px 50px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+    position: center;
+    margin: 0 auto;
+    margin-top:20px;
+    text-align: center;
+    color: #fff;
+  }
+  .button:hover {
+    background-color: #1b4768;
+  }
