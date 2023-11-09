@@ -67,6 +67,6 @@ class CandidatoController extends Controller
                     'nomeEmpresa' => $empresa->nome];
             array_push($todasVagas, $infos);
         }
-        dd($todasVagas);
+        
     }
 }
