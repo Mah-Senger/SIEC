@@ -68,7 +68,7 @@
   </div>
   <div class="conteudo">
     @foreach ($usuariosCandidatos as $candidato)
-        <p>Nome do Candidato: {{ $candidato['nome'] }}</p>
+        <p><a href="{{route('empresa.showCandidatos', $candidato['idUsuario'])}}">Nome do Candidato: {{ $candidato['nome'] }}</a></p>
         <p>Cidade: {{ $candidato['cidade'] }}</p>
         <p>Formação: {{ $candidato['formacao'] }}</p>
         <br><br>

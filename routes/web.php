@@ -72,3 +72,5 @@ Route::get('pagina8', function () {
 Route::get('pagina2', function () {
     return view('usuario.pagina2');
 });
+
+Route::get('/empresa/showCandidato/{id}', [App\Http\Controllers\EmpresaController::class, 'showCandidato'])->name('empresa.showCandidatos');

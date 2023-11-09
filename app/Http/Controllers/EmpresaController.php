@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EmpresaController extends Controller{
-    
+
     public function showCadastroEmpresa(){
         return view('empresa.cadastro');
     }
@@ -164,6 +164,26 @@ class EmpresaController extends Controller{
             }
         }
         return view('empresa.showTodosCandidatos', compact('usuariosCandidatos'));
+    }
+
+    public function showCandidato($idCandidato){
+        $usuario = Usuarios::where('id', '=', $idCandidato)->get()[0];
+        if($usuario->tipoUser != "candidato"){
+            
+        }
+        $candidato = Candidato::where('idUsuario', '=', $idCandidato)->get()[0];
+        $usuariosCandidatos = ['idUsuario' => $usuario->id, 
+                            'nome' => $usuario->nome, 
+                            'email' => $usuario->email, 
+                            'senha' => $usuario->senha,
+                            'telefone' => $usuario->telefone, 
+                            'cidade' => $usuario->cidade,
+                            'cpf' => $candidato->cpf, 
+                            'experiencia' => $candidato->experiencia, 
+                            'idiomas' => $candidato->idiomas,
+                            'formacao' => $candidato->formacao, 
+                            'formacaoDescricao' => $candidato->formacaoDescricao];
+        dd($usuariosCandidatos);
     }
 
     public function verVagasCadastradas(){
