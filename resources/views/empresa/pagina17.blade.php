@@ -12,18 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1>SIEC</h1>
-        </div>
-        <div class="links">
-            <nav>
-                <a href="" target="_self">Home</a>
-                <a href="" target="_self">Quem somos</a>
-                <a href="" target="_self">Entrar</a>
-            </nav>
-        </div>
-    </header>
+    <x-header />
     <main>
         <section class="main-conteudo">
             <div class="main-texto">
@@ -55,16 +44,6 @@
             </div>
         </section>
     </main>
-    <footer>
-        <div class="logo">
-            <h1>SIEC</h1>
-        </div>
-        <div class="links">
-            <nav>
-                <a href="#" target="_self">Gmail</a>
-                <a href="#" target="_self">Instagram</a>
-            </nav>
-        </div>
-    </footer>
+    <x-footer />
 </body>
 </html>

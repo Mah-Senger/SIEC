@@ -44,9 +44,11 @@
   </style>
 </head>
 <body>
+  <x-header />
   <div class="jumbotron">
     <p class="lead">Parabéns! Você concluiu com êxito o curso. Agora podemos continuar com o seu cadastro.</p>
     <a class="btn btn-primary btn-lg" href="#" role="button">Continuar</a>
   </div>
+  <x-footer />
 </body>
 </html>

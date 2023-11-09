@@ -119,14 +119,7 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>SIEC</h1>
-        <nav class="navigation">
-            <a href="#">Home</a>
-            <a href="#">Quem somos</a>
-            <a href="#" class="enter">Entrar</a>
-        </nav>
-    </header>
+    <x-header />
 
     <div class="content">
         <div class="sidebar" onclick="toggleSidebar()">
@@ -156,6 +149,8 @@
             </div>
         </div>
     </div>
+
+    <x-footer />
 
     <script>
         function toggleSidebar() {

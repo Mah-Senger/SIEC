@@ -7,6 +7,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
+  <x-header />
   <div class="container">
     <div class="title">Cadastro Inicial</div>
     <div class="content">
@@ -68,10 +69,8 @@
           <input type="checkbox" name="recurso6" value="braile">Conteúdo em braile<br>
           <input type="checkbox" name="recurso7" value="espaço">Espaço amplo para locomoção<br>
         </form>
-
-        
     </div>
   </div>
-
+  <x-footer />
 </body>
 </html>

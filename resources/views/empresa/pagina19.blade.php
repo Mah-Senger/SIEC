@@ -11,6 +11,7 @@
          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=HK+Grotesk:wght@300&display=swap" rel="stylesheet">
    </head>
 <body>
+  <x-header />
     <div id="dashboard">
         <div class="sidebar">
           <div class="logo-details">
@@ -145,7 +146,7 @@
             </div>
         </div>
      </section>
-
+    <x-footer />
 <script>
   let sidebar = document.querySelector(".sidebar");
   let container = document.querySelector(".container");

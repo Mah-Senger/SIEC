@@ -85,18 +85,12 @@ header {
   </style>
 </head>
 <body>
-  <header>
-    <h1>SIEC</h1>
-    <nav class="navigation">
-        <a href="#">Home</a>
-        <a href="#">Quem somos</a>
-        <a href="#" class="enter">Entrar</a>
-    </nav>
-</header>
+  <x-header />
   <div class="jumbotron">
     <p class="lead">Para a próxima etapa de seu cadastro, preparamos um minicurso para você e sua equipe.</p>
     <a class="btn btn-primary btn-lg" href="#" role="button">Prosseguir</a>
   </div>
+  <x-footer />
 </body>
 </html>
 
