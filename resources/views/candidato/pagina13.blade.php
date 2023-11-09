@@ -7,6 +7,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
+  <x-header/>
   <div class="container">
     <div class="title">Cadastro Inicial</div>
     <div class="content">
@@ -62,6 +63,6 @@
         
     </div>
   </div>
-
+  <x-footer />
 </body>
 </html>
