@@ -61,6 +61,10 @@ Route::get('/empresa/pagina', function () {
     return view('empresa.pagina19');
 });
 
+route::get('/candidato/vagateste', function () {
+    return view('candidato.pagina15');
+});
+
 Route::get('/empresa/minicurso', function () {
     return view('empresa.miniCurso');
 });
