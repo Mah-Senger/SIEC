@@ -58,7 +58,7 @@ Route::get('/empresa/dashboard', function () {
 });
 
 Route::get('/pagina', function () {
-    return view('empresa.verVagasCadastradas');
+    return view('usuario.pagina3');
 });
 
 route::get('/candidato/vagateste', function () {

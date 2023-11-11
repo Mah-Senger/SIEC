@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <title> Cadastro Inicial Candidato </title>
     <link rel="stylesheet" href="pagina13.css">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=PT+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/pagina13.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
   <x-header/>
-  <div class="container">
+  <div class="containerBody">
     <div class="title">Cadastro Inicial</div>
     <div class="content">
-      <form action="#">
+      <form action="#" method="post">
         <div class="user-details">
           <div class="input-box">
             <span class="details">Nome Completo</span>
             <input type="text" placeholder="digite o nome completo" required>
-        </div>
+          </div>
           <div class="input-box">
             <span class="details">Data de Nascimento</span>
             <input type="date" placeholder="digite a data de nascimento" required>
@@ -53,11 +60,9 @@
             <span class="details">Instituição:</span>
             <input type="text" placeholder="digite a instituição" required>
           </div>
-
-
-
-
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Próxima</button>
         </div>
+        </form>
         </div>
 
         
