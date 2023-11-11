@@ -171,5 +171,11 @@ class EmpresaController extends Controller{
         $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
         return view('empresa.verVagasCadastradas', compact('vagas'));
     }
+
+    public function deleteEmpresa($idUsuario){
+        $usuario = Usuarios::where('id', '=', $idUsuario);
+        $usuario->delete();
+        return redirect()->route('index');
+    }
             
 }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Auth::routes();
 
@@ -53,6 +53,12 @@ Route::get('/empresa/verVagasCadastradas', [App\Http\Controllers\EmpresaControll
 
 Route::get('/empresa/selecionarVaga', [App\Http\Controllers\EmpresaController::class, 'selecionarVaga'])->name('empresa.selecionarVaga');
 
+Route::get('/empresa/delete/{idUsuario}', [App\Http\Controllers\EmpresaController::class, 'deleteEmpresa'])->name('empresa.delete');
+
+Route::get('/candidato/delete/{idUsuario}', [App\Http\Controllers\CandidatoController::class, 'deleteCandidato'])->name('candidato.delete');
+
+Route::get('/empresa/deleteVaga/{idVaga}', [App\Http\Controllers\VagaController::class, 'deleteVaga'])->name('empresa.deleteVaga');
+
 Route::get('/empresa/dashboard', function () {
     return view('usuario.dashboard');
 });
@@ -72,3 +78,5 @@ Route::get('pagina8', function () {
 Route::get('pagina2', function () {
     return view('usuario.pagina2');
 });
+
+

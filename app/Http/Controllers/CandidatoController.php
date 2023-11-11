@@ -69,4 +69,10 @@ class CandidatoController extends Controller
         }
         dd($todasVagas);
     }
+
+    public function deleteCandidato($idUsuario){
+        $usuario = Usuarios::where('id', '=', $idUsuario);
+        $usuario->delete();
+        return redirect()->route('index');
+    }
 }
