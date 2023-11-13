@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,19 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/login', [App\Http\Controllers\UsuarioController::class, 'login'])->name('login');
+Route::get('/login', [App\Http\Controllers\UsuarioController::class, 'login'], function(){
+    if(session()->has('email')){
+        return redirect('dashboard');
+    }
+    return redirect('login');
+})->name('login');
+Route::post("email",[UserAuth::class,'userLogin']);
+Route::get('/logout', function () {
+    if(session()->has('email')){
+        session()->pull('email');
+    }
+    return redirect('login');
+});
 
 Route::get('/empresa/cadastro', [App\Http\Controllers\EmpresaController::class, 'showCadastroEmpresa'])->name('empresa.showCadastro');
 

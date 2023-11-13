@@ -30,7 +30,8 @@
               <div class="text-center">
                 <h1>ENTRAR</h1>
               </div>
-              <form class="formulario">
+              <form class="formulario" action="email" method="POST">
+                @csrf
                 <label>E-mail:</label>
                 <input type="text" name="email" id="email" class="form-control my-3 py-2" placeholder="Email">
                 <label>Senha:</label>
