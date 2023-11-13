@@ -9,6 +9,8 @@ use App\Models\Vagas;
 use App\Models\RecursosAcessibilidade;
 use App\Models\RequisitosHabilidadesVagas;
 use App\Models\RequisitosHabilidadesCandidatos;
+use App\Models\HabilidadesVaga;
+use App\Models\HabilidadesCandidato;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -104,7 +106,7 @@ class EmpresaController extends Controller{
             $count = 0;
             $array = array('comunicacaoLibras', 'banheirosAcessiveis', 'corredoresAcessiveis', 'rampas', 'elevadores', 'contBraile', 'espacoAmploParaLocomocao');
             foreach($array as $indice){
-                if($requestAcessCandidato[$indice] == $requestAcess[$indice]){
+                if($requestAcessCandidato[$indice] == $requestAcess[$indice] or $requestAcessCandidato[$indice] == 0){
                     $count++;
                 }
             }
@@ -114,14 +116,14 @@ class EmpresaController extends Controller{
         }
 
         foreach ($candidatosCompativeisEmpresa as $candidato){
-            $requisitosHabilidadesCandidato = RequisitosHabilidadesCandidatos::where("idCandidato", '=', $candidato->id)->take(1)->get()[0];
+            $habilidadesCandidato = HabilidadesCandidato::where("idCandidato", '=', $candidato->id)->get();
             $count = 0;
-            $array = array('comunicacaoOral', 'comunicacaoEscrita', 'habilidadesInterpessoais', 'trabalhoEmEquipe', 'lideranca', 'resolucaoDeConflitos', 'negociacao', 'tomadaDeDecisao', 'pensamentoCritico', 'solucaoDeProblemas', 'adaptabilidade', 'inovacao', 'gerenciamentoDeTempo', 'organizacao', 'planejamento', 'gerenciamentoDeProjetos', 'analiseDeDados', 'estatisticas', 'pesquisa', 'analiseDeMercado', 'gestaoDeRiscos', 'estrategiaDeNegocios', 'empreendedorismo', 'criatividade', 'empatia', 'resiliencia', 'autoconfianca', 'autocontrole', 'capacidadeDeMotivar', 'orientacaoParaResultados', 'foco', 'tomadaDeIniciativa', 'gerenciamentoDeRecursos', 'gerenciamentoDeOrcamento', 'tomadaDeDecisaoEtica', 'multitarefa', 'habilidadesDeApresentacao', 'pensamentoEstrategico', 'habilidadesAnaliticas', 'habilidadesDeResolucaoDeProblemasComplexos', 'habilidadesDeResolucaoDeProblemasSimples', 'habilidadesDeProgramacao', 'conhecimentoEmTecnologiaDaInformacao', 'conhecimentoEmMarketingDigital', 'conhecimentoEmAnaliseDeDados', 'conhecimentoEmSEO', 'conhecimentoEmDesignGrafico', 'conhecimentoEmGerenciamentoDeMidia', 'conhecimentoEmAprendizadoDeMaquina', 'conhecimentoEmInteligenciaArtificial');
+            print($habilidadesCandidato);
         
-            foreach($array as $indice){
-                if($requisitosVaga[$indice] == $requisitosHabilidadesCandidato[$indice]){
+            /*foreach($array as $indice){
+                if($requisitosVaga[$indice] == $habilidadesCandidato[$indice]){
                     $count++;
-                }elseif($requisitosVaga[$indice] == 0 && $requisitosHabilidadesCandidato[$indice] == 1){
+                }elseif($requisitosVaga[$indice] == 0 && $habilidadesCandidato[$indice] == 1){
                     $count++;
                 }
             }
@@ -138,7 +140,8 @@ class EmpresaController extends Controller{
                     'formacao' => $candidato->formacao];
             array_push($candidatosSelecionados, $infos);
         }
-        return view('empresa.showCandidatos', compact('candidatosSelecionados'));
+        return view('empresa.showCandidatos', compact('candidatosSelecionados'));*/
+        }
     }
 
     public function showTodosCandidatos(){
