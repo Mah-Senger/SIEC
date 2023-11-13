@@ -32,4 +32,9 @@ class VagaController extends Controller
         return view('vaga.show', compact('vaga', 'habilidades', 'empresa'));
     }
 
+    public function deleteVaga($idVaga){
+        $vaga = Vagas::where('id', '=', $idVaga);
+        $vaga->delete();
+        return redirect()->route('index');
+    }
 }
