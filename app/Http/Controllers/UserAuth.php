@@ -9,7 +9,7 @@ class UserAuth extends Controller{
     {
         $data= $req->input();
         $req->session()->put('email',$data['email']);
-        return redirect('usuario.dashboard');
+        return redirect()->route('dashboard');
     }
 }
 ?>

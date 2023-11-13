@@ -62,7 +62,7 @@
              <div class="job">nicho profissional</div>
            </div>
          </div>
-         <i class='bx bx-log-out' id="log_out" href="/logout"></i>
+         <a href="/logout"><i class='bx bx-log-out' id="log_out" ></i></a>
      </li>
     </ul>
   </div>

@@ -68,7 +68,7 @@ Route::get('/empresa/selecionarVaga', [App\Http\Controllers\EmpresaController::c
 
 Route::get('/empresa/dashboard', function () {
     return view('usuario.dashboard');
-});
+})->name("dashboard");
 
 Route::get('pagina13', function () {
     return view('candidato.pagina13');
