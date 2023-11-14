@@ -28,7 +28,8 @@ Route::get('/login', [App\Http\Controllers\UsuarioController::class, 'login'], f
     }
     return redirect('login');
 })->name('login');
-Route::post("email",[UserAuth::class,'userLogin']);
+Route::post('/auth', [UserAuth::class,'userLogin'])->name('auth.user');
+//Route::post("email",[UserAuth::class,'userLogin']);
 Route::get('/logout', function () {
     if(session()->has('email')){
         session()->pull('email');
