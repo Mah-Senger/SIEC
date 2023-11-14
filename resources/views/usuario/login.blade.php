@@ -49,9 +49,9 @@
               <form class="formulario" action="{{route('auth.user')}}" method="POST">
                 @csrf
                 <label>E-mail:</label>
-                <input type="text" name="email" id="email" class="form-control my-3 py-2" placeholder="Email">
+                <input type="text" name="email" id="email" value="{{old('email')}}" class="form-control my-3 py-2" placeholder="Email">
                 <label>Senha:</label>
-                <input type="password" name="senha" id="senha" class="form-control my-3 py-2" placeholder="Senha">
+                <input type="password" name="senha" id="senha" value="{{old('senha')}}" class="form-control my-3 py-2" placeholder="Senha">
                 <div class="esqueceuSenha">
                   <div class="text-left">
                     <a href="#">Esqueceu a senha?</a>
