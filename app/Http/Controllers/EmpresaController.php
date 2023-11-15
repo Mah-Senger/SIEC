@@ -84,23 +84,24 @@ class EmpresaController extends Controller{
     }
 
     public function selecionarVaga(){
-        $idEmpresa = 2;
+        $idEmpresa = 1;
         $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
         return view('empresa.selecionarVaga', compact('vagas'));
     }
 
     public function showCandidatos(Request $infosVaga){
         //Testando a compatibilidade entre empresa e candidatos
-        $idEmpresa = 2;
+        $idEmpresa = 1;
         $request = Empresa::find($idEmpresa);
         $requestAcess = RecursosAcessibilidade::where("idUsuario", '=', $idEmpresa)->get()[0];
-        $requisitosVaga = RequisitosHabilidadesVagas::where("idVaga", '=', $infosVaga->vaga)->take(1)->get()[0];
+        $requisitosVaga = HabilidadesVaga::where("idVaga", '=', $infosVaga->vaga)->get();
         //$vagas = Vagas::where('idUsuario', '=', "$idEmpresa")->get();
         $requestCandidatos = Candidato::all();
         $candidatosCompativeisEmpresa = array();
+        $candidatosIdeaisDuplicados = array();
         $candidatosIdeais = array();
         $candidatosSelecionados = array();
-
+        
         foreach($requestCandidatos as $candidato){
             $requestAcessCandidato = RecursosAcessibilidade::where("idUsuario", '=', $candidato->idUsuario)->take(1)->get()[0];
             $count = 0;
@@ -115,23 +116,23 @@ class EmpresaController extends Controller{
             }
         }
 
-        foreach ($candidatosCompativeisEmpresa as $candidato){
-            $habilidadesCandidato = HabilidadesCandidato::where("idCandidato", '=', $candidato->id)->get();
-            $count = 0;
-            print($habilidadesCandidato);
-        
-            /*foreach($array as $indice){
-                if($requisitosVaga[$indice] == $habilidadesCandidato[$indice]){
-                    $count++;
-                }elseif($requisitosVaga[$indice] == 0 && $habilidadesCandidato[$indice] == 1){
-                    $count++;
+        foreach($requisitosVaga as $requisito){
+            foreach($candidatosCompativeisEmpresa as $candidato){
+                $habilidadesCandidato = HabilidadesCandidato::where("idCandidato", '=', $candidato->idUsuario)->get();
+                foreach ($habilidadesCandidato as $habilidade){
+                    if($habilidade->idHabilidade == $requisito->idHabilidade){
+                        array_push($candidatosIdeaisDuplicados, $candidato);
+                    }
                 }
-            }
-
-            if($count >= 3){
-                array_push($candidatosIdeais, $candidato);
+                
             }
         }
+        // Codifica cada array para comparação e obtém os únicos
+        $candidatosIdeais = array_map('json_decode', array_unique(array_map('json_encode', $candidatosIdeaisDuplicados)));
+
+        // Remove as chaves duplicadas
+        $candidatosIdeais = array_values($candidatosIdeais);
+
         foreach($candidatosIdeais as $candidato){
             $usuario = Usuarios::where('id', '=', $candidato->idUsuario)->get()[0];
             $infos = ['idUsuario' => $usuario->id,
@@ -140,8 +141,9 @@ class EmpresaController extends Controller{
                     'formacao' => $candidato->formacao];
             array_push($candidatosSelecionados, $infos);
         }
-        return view('empresa.showCandidatos', compact('candidatosSelecionados'));*/
-        }
+
+        return view('empresa.showCandidatos', compact('candidatosSelecionados'));
+        
     }
 
     public function showTodosCandidatos(){
