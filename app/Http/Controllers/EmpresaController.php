@@ -40,12 +40,13 @@ class EmpresaController extends Controller{
             'objHistEmpresa' => ['required', 'min:20']
         ];
         $request->validate($rules);
+        $senha = \Hash::make($request['senhaEmpresa']);
 
         if($request->senhaEmpresa == $request->confirmarSenhaEmpresa){
             $usuario = Usuarios::create([
                 'nome' => $request->nomeEmpresa,
                 'email' => $request->emailEmpresa,
-                'senha' => $request->senhaEmpresa,
+                'senha' => $senha,
                 'telefone' => $request->telefoneEmpresa,
                 'cidade' => $request->cidadeEmpresa,
                 'tipoUser' => "empresa",
@@ -181,6 +182,68 @@ class EmpresaController extends Controller{
         $usuario = Usuarios::where('id', '=', $idUsuario);
         $usuario->delete();
         return redirect()->route('index');
+    }
+
+    public function editarEmpresa(){
+        $idUsuario = 1;
+        $usuario = Usuarios::where('id', '=', $idUsuario)->get()[0];
+        $empresa = Empresa::where('idUsuario', '=', $idUsuario)->take(1)->get()[0];
+        // dd($empresa);
+        // dd($usuario);
+        $usuariosEmpresa = ['idUsuario' => $usuario->id, 
+                    'nome' => $usuario->nome, 
+                    'email' => $usuario->email, 
+                    'senha' => $usuario->senha,
+                    'telefone' => $usuario->telefone, 
+                    'cidade' => $usuario->cidade,
+                    'ruaEnd' => $empresa->ruaEnd,
+                    'numEnd' => $empresa->numEnd,
+                    'bairroEnd' => $empresa->bairroEnd,
+                    'cepEnd' => $empresa->cepEnd,
+                    'objHistEmpresa' => $empresa->objHistEmpresa,
+                    'cnpj' => $empresa->cnpj];
+        return view('empresa.editar', compact('usuariosEmpresa'));
+    }
+
+    public function updateEmpresa(Request $request){
+        $idUsuario = 1;
+        $rules = [
+            'nomeEmpresa' => ['required', 'string', 'max:255'],
+            'cnpjEmpresa' => ['required', 'string', 'max:14', 'min:14'],
+            'emailEmpresa' => ['required', 'string'],
+            'senhaEmpresa' => ['string', 'required', 'min:8', 'max:20'],
+            'telefoneEmpresa' => ['string', 'required'],
+            'cidadeEmpresa' => ['required', 'string'],
+            'ruaEndEmpresa' => ['required', 'string'],
+            'numEndEmpresa' => ['required', 'integer'],
+            'bairroEndEmpresa' => ['required', 'string'],
+            'cepEndEmpresa' => ['required', 'string', 'max:8', 'min:8'],
+            'objHistEmpresa' => ['required', 'min:20']
+        ];
+        $request->validate($rules);
+        $senha = \Hash::make($request['senhaEmpresa']);
+
+        if($request->senhaEmpresa == $request->confirmarSenhaEmpresa){
+            $usuario = Usuarios::find($idUsuario);
+            // dd($usuario);
+            $usuario->update(['nome' => $request->nomeEmpresa,
+                    'senha' => $senha,
+                    'telefone' => $request->telefoneEmpresa,
+                    'cidade' => $request->cidadeEmpresa]);
+            
+            $empresa = Empresa::where('idUsuario', '=', $idUsuario)->get()[0];
+            // dd($empresa);
+            $empresa->update(['ruaEnd' => $request->ruaEndEmpresa,
+                    'numEnd' => $request->numEndEmpresa,
+                    'bairroEnd' => $request->bairroEndEmpresa,
+                    'cepEnd' => $request->cepEndEmpresa,
+                    'objHistEmpresa' => $request->objHistEmpresa,
+                    'cnpj' => $request->cnpjEmpresa]);
+            
+            // dd('deu certo');
+            return redirect()->route('empresa.selecionarVaga');
+        }
+            return redirect()->back();
     }
             
 }

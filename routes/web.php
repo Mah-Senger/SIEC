@@ -79,4 +79,11 @@ Route::get('pagina2', function () {
     return view('usuario.pagina2');
 });
 
+Route::get('/candidato/editar', [App\Http\Controllers\CandidatoController::class, 'editarCandidato'])->name('candidato.editarCandidato');
+
+Route::post('/candidato/update', [App\Http\Controllers\CandidatoController::class, 'updateCandidato'])->name('candidato.updateCandidato');
+
+Route::get('/empresa/editar', [App\Http\Controllers\EmpresaController::class, 'editarEmpresa'])->name('empresa.editarEmpresa');
+
+Route::post('/empresa/update', [App\Http\Controllers\EmpresaController::class, 'updateEmpresa'])->name('empresa.updateEmpresa');
 
