@@ -87,3 +87,5 @@ Route::get('/empresa/editar', [App\Http\Controllers\EmpresaController::class, 'e
 
 Route::post('/empresa/update', [App\Http\Controllers\EmpresaController::class, 'updateEmpresa'])->name('empresa.updateEmpresa');
 
+Route::get('/candidato/verVagasRecomendadas', [App\Http\Controllers\CandidatoController::class, 'verVagasRecomendadas'])->name('candidato.verVagasRecomendadas');
+

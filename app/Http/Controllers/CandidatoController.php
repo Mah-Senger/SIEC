@@ -6,6 +6,11 @@ use App\Models\Usuarios;
 use App\Models\Empresa;
 use App\Models\Candidato;
 use App\Models\Vagas;
+use App\Models\RecursosAcessibilidade;
+use App\Models\RequisitosHabilidadesVagas;
+use App\Models\RequisitosHabilidadesCandidatos;
+use App\Models\HabilidadesVaga;
+use App\Models\HabilidadesCandidato;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -133,5 +138,69 @@ class CandidatoController extends Controller
             // return view('candidato.editar', compact('usuariosCandidatos'));
         }
             return redirect()->back();
+    }
+
+    public function verVagasRecomendadas(){
+        //Testando a compatibilidade entre empresa e candidatos
+        $idCandidato = 3;
+        $request = Candidato::find($idCandidato);
+        $requestAcess = RecursosAcessibilidade::where("idUsuario", '=', $idCandidato)->get()[0];
+        // dd($requestAcess);
+        $requisitosCandidatos = HabilidadesCandidato::where("idCandidato", '=', $idCandidato)->get();
+        // dd($requisitosCandidatos);
+        //$vagas = Vagas::where('idUsuario', '=', "$idCandidato")->get();
+        $requestEmpresas = Empresa::all();
+        $empresasCompativeisCandidato = array();
+        $vagaIdeaisDuplicadas = array();
+        $vagaIdeais = array();
+        $empresasSelecionadas = array();
+        
+        foreach($requestEmpresas as $empresa){
+            $requestAcessEmpresa = RecursosAcessibilidade::where("idUsuario", '=', $empresa->idUsuario)->take(1)->get()[0];
+            $count = 0;
+            $array = array('comunicacaoLibras', 'banheirosAcessiveis', 'corredoresAcessiveis', 'rampas', 'elevadores', 'contBraile', 'espacoAmploParaLocomocao');
+            foreach($array as $indice){
+                if($requestAcessEmpresa[$indice] == $requestAcess[$indice] or $requestAcessEmpresa[$indice] == 0){
+                    $count++;
+                }
+            }
+            if($count >= 3){
+                array_push($empresasCompativeisCandidato, $empresa);
+            }
+        }
+        // dd($empresasCompativeisCandidato);
+
+        foreach($requisitosCandidatos as $requisito){
+            foreach($empresasCompativeisCandidato as $empresa){
+                $vagas = Vagas::where('idUsuario', '=', $empresa->idUsuario)->get();
+                foreach($vagas as $vaga){
+                    $requisitosHabilidadesVaga = HabilidadesVaga::where('idVaga', '=', $vaga->id)->get();
+                    // dd($requisitosHabilidadesVaga);
+                    foreach ($requisitosHabilidadesVaga as $habilidade){
+                        if($habilidade->idHabilidade == $requisito->idHabilidade){
+                            array_push($vagaIdeaisDuplicadas, $vaga);
+                        }
+                    }
+                }
+                // $habilidades = HabilidadesCandidato::where("idCandidato", '=', $empresa->idUsuario)->get();
+                // foreach ($habilidadesCandidato as $habilidade){
+                //     if($habilidade->idHabilidade == $requisito->idHabilidade){
+                //         array_push($candidatosIdeaisDuplicados, $empresa);
+                //     }
+                // }
+                
+            }
+        }
+        // dd($vagaIdeaisDuplicadas);
+        // die();
+        // Codifica cada array para comparação e obtém os únicos
+        $vagaIdeais = array_map('json_decode', array_unique(array_map('json_encode', $vagaIdeaisDuplicadas)));
+
+        // Remove as chaves duplicadas
+        $empresasSelecionadas = array_values($vagaIdeais);
+        dd($empresasSelecionadas);
+
+        // return view('empresa.showCandidatos', compact('candidatosSelecionados'));
+        
     }
 }
