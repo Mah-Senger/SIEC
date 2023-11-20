@@ -6,6 +6,7 @@ use App\Models\Usuarios;
 use App\Models\Empresa;
 use App\Models\Candidato;
 use App\Models\Vagas;
+use App\Models\InteresseCandidatos;
 use App\Models\RecursosAcessibilidade;
 use App\Models\RequisitosHabilidadesVagas;
 use App\Models\RequisitosHabilidadesCandidatos;
@@ -244,6 +245,34 @@ class EmpresaController extends Controller{
             return redirect()->route('empresa.selecionarVaga');
         }
             return redirect()->back();
+    }
+
+    public function manifestarInteresseCandidato($idCandidato){
+        $idEmpresa = 1;
+        // $idCandidato = 3;
+        $validacao = InteresseCandidatos::where('idEmpresa', '=', "$idEmpresa")->where('idCandidato', '=', "$idCandidato")->get();
+        foreach($validacao as $valid){
+            if(isset($valid->idCandidato)){
+                print("erro");
+                // return redirect()->back()->with('erro', 'Manifestação de interesse enviada com sucesso!');
+            }
+        }
+        
+        $interesse = InteresseCandidatos::create([
+            'idEmpresa' => $idEmpresa,
+            'idCandidato' => $idCandidato,
+        ]);
+
+        print("deu certo");
+        // return redirect()->back()->with('status', 'Manifestação de interesse enviada com sucesso!');
+    }
+
+    public function verInteresses(){
+        $idEmpresa = 1;
+
+        $interesses = InteresseCandidatos::where('idEmpresa', '=', "$idEmpresa")->get();
+        print("deu certo");
+        // return view('empresa.verInteresses', compact('interesses'));
     }
             
 }
