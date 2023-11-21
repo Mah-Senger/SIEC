@@ -67,15 +67,15 @@ Route::get('pagina13', function () {
     return view('candidato.pagina13');
 });
 
-Route::get('pagina4', function () {
-    return view('empresa.pagina4');
+Route::get('/paginaNovas', function () {
+    return view('empresa.questionario');
 });
 
 Route::get('pagina8', function () {
     return view('empresa.pagina8');
 });
 
-Route::get('pagina2', function () {
+Route::get('pagina', function () {
     return view('usuario.pagina2');
 });
 
