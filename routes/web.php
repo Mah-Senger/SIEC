@@ -21,7 +21,17 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Route::controller(UsuarioController::class)->group(function () {
+//     Route::get('/login', 'index')->name('login.index');
+//     Route::post('/login', 'store')->name('login.store');
+//     Route::get('/logout', 'destroy')->name('login.destroy');
+// });
+
 Route::get('/login', [App\Http\Controllers\UsuarioController::class, 'login'])->name('login');
+Route::post('/store', [App\Http\Controllers\UsuarioController::class, 'store'])->name('store');
+Route::get('/logout', [App\Http\Controllers\UsuarioController::class, 'destroy'])->name('destroy');
+
+Route::get('/login2', [App\Http\Controllers\UsuarioController::class, 'login'])->name('login');
 
 Route::get('/empresa/cadastro', [App\Http\Controllers\EmpresaController::class, 'showCadastroEmpresa'])->name('empresa.showCadastro');
 
