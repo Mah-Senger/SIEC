@@ -93,6 +93,10 @@ Route::get('/candidato/verVagasRecomendadas', [App\Http\Controllers\CandidatoCon
 Route::get('/empresa/interesseCandidato/{idCandidato}', [App\Http\Controllers\EmpresaController::class, 'manifestarInteresseCandidato'])->name('empresa.manifestarInteresseCandidato');
 
 if($_SESSION['usuario']['tipoUser'] == "candidato"){
-    Route::get('/empresa/verInteresses', [App\Http\Controllers\EmpresaController::class, 'verInteresses'])->name('empresa.verInteresses');
+    
+}
+
+if($_SESSION['usuario']['tipoUser'] == "empresa"){
+    
 }
 // Route::get('/empresa/verInteresses', [App\Http\Controllers\EmpresaController::class, 'verInteresses'])->name('empresa.verInteresses');
