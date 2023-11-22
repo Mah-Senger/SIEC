@@ -63,8 +63,8 @@ Route::get('/empresa/dashboard', function () {
     return view('usuario.dashboard');
 });
 
-Route::get('pagina13', function () {
-    return view('candidato.pagina13');
+Route::get('/pagina', function () {
+    return view('empresa.pagina20');
 });
 
 Route::get('/paginaNovas', function () {
@@ -75,9 +75,9 @@ Route::get('pagina8', function () {
     return view('empresa.pagina8');
 });
 
-Route::get('pagina', function () {
-    return view('usuario.pagina2');
-});
+// Route::get('pagina', function () {
+//     return view('usuario.pagina2');
+// });
 
 Route::get('/candidato/editar', [App\Http\Controllers\CandidatoController::class, 'editarCandidato'])->name('candidato.editarCandidato');
 

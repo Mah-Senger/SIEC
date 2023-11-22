@@ -26,53 +26,78 @@
 
     <form action="{{ route('empresa.create') }}" method="post">
         @csrf
-        <label for="nomeEmpresa">Nome da empresa: </label>
-        <input type="text" id="nomeEmpresa" class="" name="nomeEmpresa" value="{{ old('nomeEmpresa') }}"><br>
-
-        <label for="cnpjEmpresa">CNPJ (Cadastro Nacional de Pessoa Jurídica): </label>
-        <input type="text" id="cnpjEmpresa" class="" name="cnpjEmpresa" value="{{ old('cnpjEmpresa') }}"><br>
         
-        <label for="emailEmpresa">Email: </label>
-        <input type="email" id="emailEmpresa" class="" name="emailEmpresa" value="{{ old('emailEmpresa') }}"><br>
+        <div class="input-box">
+            <span class="details" for="nomeEmpresa">Nome da empresa: </span>
+            <input type="text" id="nomeEmpresa" class="" name="nomeEmpresa" value="{{ old('nomeEmpresa') }}" placeholder="Digite o nome da empresa"><br>
+        </div>
 
-        <label for="senhaEmpresa">Senha: </label>
-        <input type="password" id="senhaEmpresa" class="" name="senhaEmpresa"><br>
+        <div class="input-box">
+            <span class="details" for="cnpjEmpresa">CNPJ (Cadastro Nacional de Pessoa Jurídica): </span>
+            <input type="text" id="cnpjEmpresa" class="" name="cnpjEmpresa" value="{{ old('cnpjEmpresa') }}" placeholder="Digite o CNPJ da empresa"><br>
+        </div>
+        
+        <div class="input-box">
+            <span class="details" for="emailEmpresa">Email: </span>
+            <input type="email" id="emailEmpresa" class="" name="emailEmpresa" value="{{ old('emailEmpresa') }}" placeholder="Exemplo: teste@teste.com"><br>
+        </div>
 
-        <label for="confirmarSenhaEmpresa">Confirmar senha: </label>
-        <input type="password" id="confirmarSenhaEmpresa" class="" name="confirmarSenhaEmpresa"><br>
+        <div class="input-box">
+            <span class="details" for="senhaEmpresa">Senha: </span>
+            <input type="password" id="senhaEmpresa" class="" name="senhaEmpresa" placeholder="Digite a senha da empresa"><br>
+        </div>
 
-        <label for="telefoneEmpresa">Telefone: </label>
-        <input type="text" id="telefoneEmpresa" class="" name="telefoneEmpresa" value="{{ old('telefoneEmpresa') }}"><br>
+        <div class="input-box">
+            <span class="details" for="confirmarSenhaEmpresa">Confirmar senha: </span>
+            <input type="password" id="confirmarSenhaEmpresa" class="" name="confirmarSenhaEmpresa" placeholder="Confirme a senha"><br>
+        </div>
 
-        <label for="cidadeEmpresa">Cidade que a empresa se localiza: </label>
-        <select name="cidadeEmpresa" value="{{ old('cidadeEmpresa') }}">
-            <option value="Alambari">Alambari-SP</option>
-            <option value="Boituva">Boituva-SP</option>
-            <option value="Capela do Alto">Capela do Alto-SP</option>
-            <option value="Cerquilho">Cerquilho-SP</option>
-            <option value="Cesário Lange">Cesário Lange-SP</option>
-            <option value="Guareí">Guareí-SP</option>
-            <option value="Itapetininga">Itapetininga-SP</option>
-            <option value="Quadra">Quadra-SP</option>
-            <option value="São Miguel Arcanjo">São Miguel Arcanjo-SP</option>
-            <option value="Sarapuí">Sarapuí-SP</option>
-            <option value="Tatuí">Tatuí-SP</option>
-        </select><br>
+        <div class="input-box">
+            <span class="details" for="telefoneEmpresa">Telefone: </span>
+            <input type="text" id="telefoneEmpresa" class="" name="telefoneEmpresa" value="{{ old('telefoneEmpresa') }}" placeholder="(xx)xxxx-xxxx"><br>
+        </div>
 
-        <label for="ruaEndEmpresa">Rua: </label>
-        <input type="text" id="ruaEndEmpresa" class="" name="ruaEndEmpresa" value="{{ old('ruaEndEmpresa') }}"><br>
+        <div class="input-box">
+            <span class="details" for="cidadeEmpresa">Cidade que a empresa se localiza: </span>
+            <select name="cidadeEmpresa" value="{{ old('cidadeEmpresa') }}">
+                <option value="Alambari">Alambari-SP</option>
+                <option value="Boituva">Boituva-SP</option>
+                <option value="Capela do Alto">Capela do Alto-SP</option>
+                <option value="Cerquilho">Cerquilho-SP</option>
+                <option value="Cesário Lange">Cesário Lange-SP</option>
+                <option value="Guareí">Guareí-SP</option>
+                <option value="Itapetininga">Itapetininga-SP</option>
+                <option value="Quadra">Quadra-SP</option>
+                <option value="São Miguel Arcanjo">São Miguel Arcanjo-SP</option>
+                <option value="Sarapuí">Sarapuí-SP</option>
+                <option value="Tatuí">Tatuí-SP</option>
+            </select><br>
+        </div>
 
-        <label for="numEndEmpresa">Número: </label>
-        <input type="number" id="numEndEmpresa" class="" name="numEndEmpresa" value="{{ old('numEndEmpresa') }}"><br>
+        <div class="input-box">
+            <span class="details" for="ruaEndEmpresa">Rua: </span>
+            <input type="text" id="ruaEndEmpresa" class="" name="ruaEndEmpresa" value="{{ old('ruaEndEmpresa') }}" placeholder="Digite a rua onde sua empresa reside"><br>
+        </div>
 
-        <label for="bairroEndEmpresa">Bairro: </label>
-        <input type="text" id="bairroEndEmpresa" class="" name="bairroEndEmpresa" value="{{ old('bairroEndEmpresa') }}"><br>
+        <div class="input-box">
+            <span class="details" for="numEndEmpresa">Número: </span>
+            <input type="number" id="numEndEmpresa" class="" name="numEndEmpresa" value="{{ old('numEndEmpresa') }}"placeholder="Digite o número da empresa"><br>
+        </div>
 
-        <label for="cepEndEmpresa">CEP: </label>
-        <input type="text" id="cepEndEmpresa" class="" name="cepEndEmpresa" value="{{ old('cepEndEmpresa') }}"><br>
+        <div class="input-box">
+            <span class="details" for="bairroEndEmpresa">Bairro: </span>
+            <input type="text" id="bairroEndEmpresa" class="" name="bairroEndEmpresa" value="{{ old('bairroEndEmpresa') }}" placeholder="Digite o bairro onde sua empresa reside"><br>
+        </div>
 
-        <label for="objHistEmpresa">Objetivos e história da empresa: </label>
-        <textarea name="objHistEmpresa" id="objHistEmpresa" value="{{ old('objHistEmpresa') }}"></textarea><br>
+        <div class="input-box">
+            <span class="details" for="cepEndEmpresa">CEP: </span>
+            <input type="text" id="cepEndEmpresa" class="" name="cepEndEmpresa" value="{{ old('cepEndEmpresa') }}" placeholder="Digite o CEP da sua empresa"><br>
+        </div>
+
+        <div class="input-box">
+            <span class="details" for="objHistEmpresa">Objetivos e história da empresa: </span>
+            <textarea name="objHistEmpresa" id="objHistEmpresa" value="{{ old('objHistEmpresa') }}"placeholder="Digite a história e os objetivos da sua empresa"></textarea><br>
+        </div>
 
         <button type="submit">Cadastrar</button>
     </form><br>

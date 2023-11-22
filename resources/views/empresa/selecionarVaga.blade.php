@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <title> Dashboard </title>
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=PT+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-<div id="dashboard">
-  <div class="sidebar">
+<main>
+<div>
+<div class="sidebar">
     <div class="logo-details">
         <i class='bx bx-menu' id="btn" ></i>
     </div>
@@ -66,6 +73,8 @@
      </li>
     </ul>
   </div>
+</div>
+  
   <div class="conteudo">
     <h2>Selecione para qual vaga deseja buscar um candidato:</h2>
     <form action="{{ route('empresa.showCandidatos') }}" method="POST">
@@ -78,7 +87,14 @@
         <button type="submit">Buscar</button>
     </form>
   </div>
-  <script>
+  
+  
+  <x-footer />
+
+</main>
+</body>
+</html>
+<script>
   let sidebar = document.querySelector(".sidebar");
   let conteudo = document.querySelector(".conteudo");
   let closeBtn = document.querySelector("#btn");
@@ -105,5 +121,3 @@
    }
   }
   </script>
-</body>
-</html>

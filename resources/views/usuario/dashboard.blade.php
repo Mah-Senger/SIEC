@@ -8,6 +8,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
+<x-header />
 <div id="dashboard">
   <div class="sidebar">
     <div class="logo-details">
@@ -96,5 +97,6 @@
    }
   }
   </script>
+</div>
 </body>
 </html>
