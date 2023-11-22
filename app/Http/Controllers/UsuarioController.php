@@ -21,6 +21,7 @@ class UsuarioController extends Authenticatable
         ]);
 
         $usuario = Usuarios::where('email', $request->input('email'))->first();
+        // dd($usuario);
 
         if (!$usuario) {
             dd('usuario');
@@ -32,10 +33,17 @@ class UsuarioController extends Authenticatable
             // return redirect()->route('login')->withErrors(['error' => 'Email or password invalid']);
         }
 
-        Auth::login($usuario, true);
+        session_start();
 
-        // return redirect()->route('login')->with('success', 'Logged in');
-        dd("deu certooooo");
+        $_SESSION['usuario']['id'] = $usuario->id;
+        $_SESSION['usuario']['nome'] = $usuario->nome;
+        $_SESSION['usuario']['email'] = $usuario->email;
+        $_SESSION['usuario']['senha'] = $usuario->senha;
+        $_SESSION['usuario']['telefone'] = $usuario->telefone;
+        $_SESSION['usuario']['cidade'] = $usuario->cidade;
+        $_SESSION['usuario']['tipoUser'] = $usuario->tipoUser;
+
+        return redirect()->route('login')->with('success', 'Logged in');
     }
 
     public function logout(){

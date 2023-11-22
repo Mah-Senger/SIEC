@@ -31,7 +31,7 @@
                 <h1>ENTRAR</h1>
               </div>
               <form class="formulario" action="{{ route('store') }}" method="post">
-                @csrf
+                @csrf 
                 <label>E-mail:</label>
                 <input type="text" name="email" id="email" class="form-control my-3 py-2" placeholder="Email">
                 <label>Senha:</label>
