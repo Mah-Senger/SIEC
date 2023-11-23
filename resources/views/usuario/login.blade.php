@@ -30,7 +30,17 @@
               <div class="text-center">
                 <h1>ENTRAR</h1>
               </div>
-              <form class="formulario">
+              @if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
+              <form class="formulario" action="{{ route('store') }}" method="post">
+                @csrf 
                 <label>E-mail:</label>
                 <input type="text" name="email" id="email" class="form-control my-3 py-2" placeholder="Email">
                 <label>Senha:</label>

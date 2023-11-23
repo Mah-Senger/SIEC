@@ -2,16 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+session_start();
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,7 +12,17 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Route::controller(UsuarioController::class)->group(function () {
+//     Route::get('/login', 'index')->name('login.index');
+//     Route::post('/login', 'store')->name('login.store');
+//     Route::get('/logout', 'destroy')->name('login.destroy');
+// });
+
 Route::get('/login', [App\Http\Controllers\UsuarioController::class, 'login'])->name('login');
+Route::post('/store', [App\Http\Controllers\UsuarioController::class, 'store'])->name('store');
+Route::get('/logout', [App\Http\Controllers\UsuarioController::class, 'sair'])->name('sair');
+
+// Route::get('/login2', [App\Http\Controllers\UsuarioController::class, 'login'])->name('login');
 
 Route::get('/empresa/cadastro', [App\Http\Controllers\EmpresaController::class, 'showCadastroEmpresa'])->name('empresa.showCadastro');
 
@@ -67,8 +68,20 @@ Route::get('pagina13', function () {
     return view('candidato.pagina13');
 });
 
+Route::get('pagina23', function () {
+    return view('candidato.pagina23');
+});
+
+Route::get('pagina21', function () {
+    return view('empresa.pagina21');
+});
+
 Route::get('pagina4', function () {
     return view('empresa.pagina4');
+});
+
+Route::get('pagina24', function () {
+    return view('candidato.pagina24');
 });
 
 Route::get('pagina8', function () {
@@ -90,5 +103,15 @@ Route::post('/empresa/update', [App\Http\Controllers\EmpresaController::class, '
 Route::get('/candidato/verVagasRecomendadas', [App\Http\Controllers\CandidatoController::class, 'verVagasRecomendadas'])->name('candidato.verVagasRecomendadas');
 
 Route::get('/empresa/interesseCandidato/{idCandidato}', [App\Http\Controllers\EmpresaController::class, 'manifestarInteresseCandidato'])->name('empresa.manifestarInteresseCandidato');
+
+if(isset($_SESSION['usuario'])){
+    if($_SESSION['usuario']['tipoUser'] == "candidato"){
+    
+    }
+    
+    if($_SESSION['usuario']['tipoUser'] == "empresa"){
+        
+    }
+}
 
 Route::get('/empresa/verInteresses', [App\Http\Controllers\EmpresaController::class, 'verInteresses'])->name('empresa.verInteresses');

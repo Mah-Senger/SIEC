@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title> Dashboard </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/pagina24.css')}}">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-   </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
 <body>
-<x-header />
-<main>
-  <div id="dashboard">
+    <x-header />
+    <main>
+        <div id="dashboard">
   <div class="sidebar">
     <div class="logo-details">
         <i class='bx bx-menu' id="btn" ></i>
@@ -71,19 +76,31 @@
     </ul>
   </div>
 </div>
-  <div class="conteudo">
-  <a href="{{route('empresa.showTodosCandidatos')}}">Ver todos os candidatos</a>
-    @foreach ($candidatosSelecionados as $candidato)
-        <p>Nome do Candidato: {{ $candidato['nome'] }}</p>
-        <p>Cidade: {{ $candidato['cidade'] }}</p>
-        <p>Formação: {{ $candidato['formacao'] }}</p>
-        <br><br>
-    @endforeach
-  </div>
-</main>
-<x-footer />
-
-  <script>
+        <section class="main-pesquisa">
+            <div class="main-pesquisa-header">
+                <form action="" method="post">
+                    <input type="search" class="main-pesquisa-input" placeholder="Pesquisar...">
+                    <button class="main-pesquisa-botao">Enviar</button>
+                </form>
+            </div>
+            <div class="main-pesquisa-conteudo">
+                <div class="main-pesquisa-link">
+                    <span>Você manifestou interesse em <a href="#">"Vaga 00: Lorem...</a> </span>
+                </div>
+                <div class="main-pesquisa-link">
+                    <span>Você manifestou interesse em <a href="#">"Vaga 00: Lorem...</a> </span>
+                </div>
+                <div class="main-pesquisa-link">
+                    <span>Você manifestou interesse em <a href="#">"Vaga 00: Lorem...</a> </span>
+                </div>
+                <div class="main-pesquisa-link">
+                    <span>Você manifestou interesse em <a href="#">"Vaga 00: Lorem...</a> </span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <x-footer />
+      <script>
   let sidebar = document.querySelector(".sidebar");
   let conteudo = document.querySelector(".conteudo");
   let closeBtn = document.querySelector("#btn");
