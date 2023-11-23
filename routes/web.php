@@ -68,8 +68,20 @@ Route::get('pagina13', function () {
     return view('candidato.pagina13');
 });
 
+Route::get('pagina23', function () {
+    return view('candidato.pagina23');
+});
+
+Route::get('pagina21', function () {
+    return view('empresa.pagina21');
+});
+
 Route::get('pagina4', function () {
     return view('empresa.pagina4');
+});
+
+Route::get('pagina24', function () {
+    return view('candidato.pagina24');
 });
 
 Route::get('pagina8', function () {

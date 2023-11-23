@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <title> Dashboard </title>
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
    </head>
 <body>
+<x-header />
+<main>
 <div id="dashboard">
   <div class="sidebar">
     <div class="logo-details">
@@ -66,7 +70,8 @@
      </li>
     </ul>
   </div>
-  <div class="conteudo">
+</div>
+<div class="conteudo">
     <h2>Selecione para qual vaga deseja buscar um candidato:</h2>
     <form action="{{ route('empresa.showCandidatos') }}" method="POST">
         @csrf
@@ -78,6 +83,8 @@
         <button type="submit">Buscar</button>
     </form>
   </div>
+</main>
+<x-footer />
   <script>
   let sidebar = document.querySelector(".sidebar");
   let conteudo = document.querySelector(".conteudo");
