@@ -20,9 +20,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/login', [App\Http\Controllers\UsuarioController::class, 'login'])->name('login');
 Route::post('/store', [App\Http\Controllers\UsuarioController::class, 'store'])->name('store');
-Route::get('/logout', [App\Http\Controllers\UsuarioController::class, 'destroy'])->name('destroy');
+Route::get('/logout', [App\Http\Controllers\UsuarioController::class, 'sair'])->name('sair');
 
-Route::get('/login2', [App\Http\Controllers\UsuarioController::class, 'login'])->name('login');
+// Route::get('/login2', [App\Http\Controllers\UsuarioController::class, 'login'])->name('login');
 
 Route::get('/empresa/cadastro', [App\Http\Controllers\EmpresaController::class, 'showCadastroEmpresa'])->name('empresa.showCadastro');
 
@@ -92,11 +92,14 @@ Route::get('/candidato/verVagasRecomendadas', [App\Http\Controllers\CandidatoCon
 
 Route::get('/empresa/interesseCandidato/{idCandidato}', [App\Http\Controllers\EmpresaController::class, 'manifestarInteresseCandidato'])->name('empresa.manifestarInteresseCandidato');
 
-if($_SESSION['usuario']['tipoUser'] == "candidato"){
+if(isset($_SESSION['usuario'])){
+    if($_SESSION['usuario']['tipoUser'] == "candidato"){
     
+    }
+    
+    if($_SESSION['usuario']['tipoUser'] == "empresa"){
+        
+    }
 }
 
-if($_SESSION['usuario']['tipoUser'] == "empresa"){
-    
-}
-// Route::get('/empresa/verInteresses', [App\Http\Controllers\EmpresaController::class, 'verInteresses'])->name('empresa.verInteresses');
+Route::get('/empresa/verInteresses', [App\Http\Controllers\EmpresaController::class, 'verInteresses'])->name('empresa.verInteresses');

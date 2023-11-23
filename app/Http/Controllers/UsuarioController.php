@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,19 +22,15 @@ class UsuarioController extends Authenticatable
         ]);
 
         $usuario = Usuarios::where('email', $request->input('email'))->first();
-        // dd($usuario);
 
         if (!$usuario) {
-            dd('usuario');
-            // return redirect()->route('login')->withErrors(['error' => 'Email or password invalid']);
+            return redirect()->route('login')->withErrors(['error' => 'Email e/ou senha inválidos']);
         }
 
-        if ($request->senha != $usuario->senha) {
-            dd('senha');
-            // return redirect()->route('login')->withErrors(['error' => 'Email or password invalid']);
+        if (!Hash::check($request['senha'], $usuario->senha)) {
+            return redirect()->route('login')->withErrors(['error' => 'Email e/ou senha inválidos']);
         }
 
-        session_start();
 
         $_SESSION['usuario']['id'] = $usuario->id;
         $_SESSION['usuario']['nome'] = $usuario->nome;
@@ -43,10 +40,16 @@ class UsuarioController extends Authenticatable
         $_SESSION['usuario']['cidade'] = $usuario->cidade;
         $_SESSION['usuario']['tipoUser'] = $usuario->tipoUser;
 
-        return redirect()->route('login')->with('success', 'Logged in');
+        dd("deu certo");
+        // return redirect()->route('login')->with('success', 'Login feito com sucesso');
     }
 
-    public function logout(){
-        return view('usuario.login');
+    public function sair(){
+        if(isset($_SESSION['usuario'])){
+            session_destroy();
+            return redirect()->route('index');
+        }else{
+            return redirect()->route('login');
+        }
     }
 }
