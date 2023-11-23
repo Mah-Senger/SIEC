@@ -15,9 +15,12 @@
     </div>
     <ul class="nav-list">
       <li>
-          <i class='bx bx-search' ></i>
-         <input type="text" placeholder="pesquisar...">
+        <form action="" method="get">
+        @csrf
+         <i class='bx bx-search' ></i>
+         <input type="text" name="pesquisar" placeholder="pesquisar...">
          <span class="tooltip">Pesquisar</span>
+        </form>
       </li>
       <li>
         <a href="{{ route('empresa.selecionarVaga') }}">
