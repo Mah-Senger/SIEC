@@ -83,7 +83,7 @@ class CandidatoController extends Controller
     }
 
     public function editarCandidato(){
-        $idUsuario = 16;
+        $idUsuario = 3;
         $usuario = Usuarios::where('id', '=', $idUsuario)->get()[0];
         $candidato = Candidato::where('idUsuario', '=', $idUsuario)->get()[0];
         // dd($usuario);
@@ -103,7 +103,7 @@ class CandidatoController extends Controller
     }
 
     public function updateCandidato(Request $request){
-        $idUsuario = 16;
+        $idUsuario = 3;
         $rules = [
             'nomeCandidato' => ['required', 'string', 'max:255'],
             'emailCandidato' => ['required', 'string'],
