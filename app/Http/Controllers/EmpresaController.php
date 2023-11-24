@@ -86,14 +86,14 @@ class EmpresaController extends Controller{
     }
 
     public function selecionarVaga(){
-        $idEmpresa = 1;
+        $idEmpresa = $_SESSION["usuario"]["id"];
         $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
         return view('empresa.selecionarVaga', compact('vagas'));
     }
 
     public function showCandidatos(Request $infosVaga){
         //Testando a compatibilidade entre empresa e candidatos
-        $idEmpresa = 1;
+        $idEmpresa = $_SESSION["usuario"]["id"];
         $request = Empresa::find($idEmpresa);
         $requestAcess = RecursosAcessibilidade::where("idUsuario", '=', $idEmpresa)->get()[0];
         $requisitosVaga = HabilidadesVaga::where("idVaga", '=', $infosVaga->vaga)->get();
@@ -174,7 +174,7 @@ class EmpresaController extends Controller{
     }
 
     public function verVagasCadastradas(){
-        $idEmpresa = 2;
+        $idEmpresa = $_SESSION["usuario"]["id"];
         $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
         return view('empresa.verVagasCadastradas', compact('vagas'));
     }
@@ -186,7 +186,7 @@ class EmpresaController extends Controller{
     }
 
     public function editarEmpresa(){
-        $idUsuario = 1;
+        $idUsuario = $_SESSION["usuario"]["id"];
         $usuario = Usuarios::where('id', '=', $idUsuario)->get()[0];
         $empresa = Empresa::where('idUsuario', '=', $idUsuario)->take(1)->get()[0];
         // dd($empresa);
@@ -207,7 +207,7 @@ class EmpresaController extends Controller{
     }
 
     public function updateEmpresa(Request $request){
-        $idUsuario = 1;
+        $idUsuario = $_SESSION["usuario"]["id"];
         $rules = [
             'nomeEmpresa' => ['required', 'string', 'max:255'],
             'cnpjEmpresa' => ['required', 'string', 'max:14', 'min:14'],
@@ -248,7 +248,7 @@ class EmpresaController extends Controller{
     }
 
     public function manifestarInteresseCandidato($idCandidato){
-        $idEmpresa = 1;
+        $idEmpresa = $_SESSION["usuario"]["id"];
         // $idCandidato = 3;
         $validacao = InteresseCandidatos::where('idEmpresa', '=', "$idEmpresa")->where('idCandidato', '=', "$idCandidato")->get();
         foreach($validacao as $valid){
