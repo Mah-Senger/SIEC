@@ -21,7 +21,8 @@ class VagaController extends Controller
             $habilidades = explode(";", $vaga->requisitosHabilidades);
         }
         $empresa = Usuarios::find($vaga->idUsuario);
-        $idUsuario = 3;
+        // $idUsuario = 3;
+        $idUsuario = $_SESSION['usuario']['id'];
         $validacao = InteresseVagas::where('idVaga', '=', "$id")->where('idCandidato', '=', "$idUsuario")->get();
         foreach($validacao as $valid){
             if(isset($valid->idCandidato)){
@@ -29,7 +30,7 @@ class VagaController extends Controller
                 return view('vaga.show', compact('vaga', 'habilidades', 'empresa', 'validacaoInteresse'));
             }
         }
-        return view('vaga.show', compact('vaga', 'habilidades', 'empresa'));
+        return view('candidato.pagina15', compact('vaga', 'habilidades', 'empresa'));
     }
 
     public function deleteVaga($idVaga){

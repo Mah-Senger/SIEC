@@ -40,7 +40,11 @@ class UsuarioController extends Authenticatable
         $_SESSION['usuario']['cidade'] = $usuario->cidade;
         $_SESSION['usuario']['tipoUser'] = $usuario->tipoUser;
 
-        dd("deu certo");
+        if($_SESSION['usuario']['tipoUser'] == 'candidato'){
+            dd("Candidato");
+        }else{
+            return redirect()->route('empresa.selecionarVaga');
+        }
         // return redirect()->route('login')->with('success', 'Login feito com sucesso');
     }
 

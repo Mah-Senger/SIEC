@@ -64,7 +64,7 @@ class EmpresaController extends Controller{
                 'cnpj' => $request->cnpjEmpresa,
                 'idUsuario' => $idUsuario,
             ]);
-            return redirect()->back();
+            return redirect()->route('empresa.inicioCursoAlert');
         }
     }
 
@@ -268,11 +268,16 @@ class EmpresaController extends Controller{
     }
 
     public function verInteresses(){
-        $idEmpresa = 1;
-
-        $interesses = InteresseCandidatos::where('idEmpresa', '=', "$idEmpresa")->get();
-        print("deu certo");
-        // return view('empresa.verInteresses', compact('interesses'));
+        $idEmpresa = $_SESSION['usuario']['id'];
+        $empresa = Empresa::where('idUsuario', "=", $idEmpresa)->get()[0];
+        $interesses = InteresseCandidatos::where('idEmpresa', '=', "$empresa->idUsuario")->get();
+        $infos = array();
+        foreach($interesses as $interesse){
+            $candidato = Usuarios::where('id', '=', $interesse->idCandidato)->get()[0];
+            array_push($infos, $candidato);
+        }
+        // dd($infos);
+        return view('empresa.verInteresses', compact('infos'));
     }
             
 }

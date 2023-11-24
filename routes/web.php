@@ -88,8 +88,8 @@ Route::get('pagina8', function () {
     return view('empresa.pagina8');
 });
 
-Route::get('pagina2', function () {
-    return view('usuario.pagina2');
+Route::get('pagina', function () {
+    return view('empresa.pagina19');
 });
 
 Route::get('/candidato/editar', [App\Http\Controllers\CandidatoController::class, 'editarCandidato'])->name('candidato.editarCandidato');
