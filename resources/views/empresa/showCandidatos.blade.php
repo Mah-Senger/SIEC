@@ -23,11 +23,7 @@
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
-      <li>
-          <i class='bx bx-search' ></i>
-         <input type="text" placeholder="pesquisar...">
-         <span class="tooltip">Pesquisar</span>
-      </li>
+    <br>
       <li>
         <a href="{{ route('empresa.selecionarVaga') }}">
           <i class='bx bx-grid-alt'></i>
