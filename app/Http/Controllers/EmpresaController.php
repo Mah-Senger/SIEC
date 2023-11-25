@@ -175,8 +175,14 @@ class EmpresaController extends Controller{
 
     public function verVagasCadastradas(){
         $idEmpresa = $_SESSION["usuario"]["id"];
-        $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
-        return view('empresa.verVagasCadastradas', compact('vagas'));
+        $search = request('search');
+
+        if($search){
+            $vagas = Vagas::where([['idUsuario', '=', $idEmpresa],['titulo','like','%'.$search.'%']])->get();
+        }else{
+            $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
+        }
+        return view('empresa.verVagasCadastradas', compact('vagas')); 
     }
 
     public function deleteEmpresa($idUsuario){
