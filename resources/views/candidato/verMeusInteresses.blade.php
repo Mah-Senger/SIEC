@@ -73,7 +73,7 @@
                 </form>
                 <a href="{{ route("candidato.verTodasVagas") }}">Ver Todas as Vagas</a>
             </div>
-            <h5>Essas são as suas manifestações de interesse. Aguarde para que a empresa desejava veja e manifeste interesse em você também.</h5>
+            <h5>Essas são as suas manifestações de interesse. Aguarde para que a empresa desejada veja e manifeste interesse em você também.</h5>
             <div class="main-pesquisa-conteudo">
             @if($vagas)
               @foreach ($vagas as $vaga)
