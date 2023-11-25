@@ -5,18 +5,18 @@
   box-sizing: border-box;
   font-family: 'Poppins',sans-serif;
 }
-body{
+/*body{
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 50px;
   background: white;
-}
+}*/
 .title{
   text-align: center;
 }
-.container{
+/*.container{
   height: auto;
   max-width: 500px;
   width: 100%;
@@ -24,7 +24,7 @@ body{
   padding: 25px 30px;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-}
+}*/
 .container .title{
   font-size: 25px;
   font-weight: 500;
