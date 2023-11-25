@@ -39,9 +39,10 @@ class UsuarioController extends Authenticatable
         $_SESSION['usuario']['telefone'] = $usuario->telefone;
         $_SESSION['usuario']['cidade'] = $usuario->cidade;
         $_SESSION['usuario']['tipoUser'] = $usuario->tipoUser;
+        $_SESSION['usuario']['nomePerfil'] = strtok($usuario->nome, " ");
 
         if($_SESSION['usuario']['tipoUser'] == 'candidato'){
-            dd("Candidato");
+            return redirect()->route('candidato.verVagasRecomendadas');
         }else{
             return redirect()->route('empresa.selecionarVaga');
         }
