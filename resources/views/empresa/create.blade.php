@@ -107,7 +107,7 @@
         </div>
         </div>
         <div class="gender-details">
-            <h3>Recursos de acessibilidade:</h3>
+            <h3>Recursos de acessibilidade que a empresa possui:</h3>
           <input type="checkbox" name="recurso1" value="1">Interprete de libras<br>
           <input type="checkbox" name="recurso2" value="1">Banheiros acessiveis<br>
           <input type="checkbox" name="recurso3" value="1">Corredores acassiveis<br>

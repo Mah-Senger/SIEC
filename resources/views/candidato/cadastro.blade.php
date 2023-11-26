@@ -98,6 +98,15 @@
         <textarea name="formacaoDescricaoCandidato" id="formacaoDescricaoCandidato" value="{{ old('formacaoDescricaoCandidato') }}" placeholder="Descreva sua formação" required></textarea>
         </div>
 
+        <h3>Recursos de acessibilidade que necessita:</h3>
+          <input type="checkbox" name="recurso1" value="1">Interprete de libras<br>
+          <input type="checkbox" name="recurso2" value="1">Banheiros acessiveis<br>
+          <input type="checkbox" name="recurso3" value="1">Corredores acassiveis<br>
+          <input type="checkbox" name="recurso4" value="1">Rampas<br>
+          <input type="checkbox" name="recurso5" value="1">Elevadores<br>
+          <input type="checkbox" name="recurso6" value="1">Conteúdo em braile<br>
+          <input type="checkbox" name="recurso7" value="1">Espaço amplo para locomoção<br>
+
         <button type="submit" class="button">Cadastrar</button>
         <br><br><br>
     </form><br><br><br><br>
