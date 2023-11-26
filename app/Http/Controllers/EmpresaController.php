@@ -7,6 +7,7 @@ use App\Models\Empresa;
 use App\Models\Candidato;
 use App\Models\Vagas;
 use App\Models\InteresseCandidatos;
+use App\Models\Habilidades;
 use App\Models\RecursosAcessibilidade;
 use App\Models\RequisitosHabilidadesVagas;
 use App\Models\RequisitosHabilidadesCandidatos;
@@ -17,12 +18,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EmpresaController extends Controller{
-    
-    public function showCadastroEmpresa(){
-        return view('empresa.cadastro');
-    }
 
-    public function showCadastroEmpresa2(){
+    public function showCadastroEmpresa(){
         return view('empresa.create');
     }
 
@@ -31,8 +28,8 @@ class EmpresaController extends Controller{
             'nomeEmpresa' => ['required', 'string', 'max:255'],
             'cnpjEmpresa' => ['required', 'string', 'max:14', 'min:14'],
             'emailEmpresa' => ['required', 'string'],
-            'senhaEmpresa' => ['string', 'required', 'min:8', 'max:20'],
-            'telefoneEmpresa' => ['string', 'required'],
+            'senhaEmpresa' => ['required', 'string', 'min:8', 'max:20'],
+            'telefoneEmpresa' => ['required','string'],
             'cidadeEmpresa' => ['required', 'string'],
             'ruaEndEmpresa' => ['required', 'string'],
             'numEndEmpresa' => ['required', 'integer'],
@@ -40,7 +37,27 @@ class EmpresaController extends Controller{
             'cepEndEmpresa' => ['required', 'string', 'max:8', 'min:8'],
             'objHistEmpresa' => ['required', 'min:20']
         ];
-        $request->validate($rules);
+        $mensagem = [
+            'nomeEmpresa.required'=>'Preencher o campo "Nome da Empresa" é obrigatório.',
+            'cnpjEmpresa.required' => 'Preencher o campo "CNPJ" é obrigatório.',
+            'cnpjEmpresa.max' => 'O campo "CNPJ" precisa ter 14 caracteres',
+            'cnpjEmpresa.min' => 'O campo "CNPJ" precisa ter 14 caracteres',
+            'emailEmpresa.required' => 'Preencher o campo "E-mail" é obrigatório.',
+            'senhaEmpresa.required' =>'Preencher o campo "Senha" é obrigatório.',
+            'senhaEmpresa.min' => 'O campo "Senha" precisa ter no mínimo 8 caracteres',
+            'senhaEmpresa.max' => 'O campo "Senha" precisa ter no máximo 20 caracteres',
+            'cepEndEmpresa.max' => 'O campo "CEP" precisa ter 8 caracteres',
+            'cepEndEmpresa.min' => 'O campo "CEP" precisa ter 8 caracteres',
+            'objHistEmpresa.min' => 'O campo "Objetivos e História da Empresa" precisa ter no mínimo 20 caracteres',
+            'telefoneEmpresa.required' => 'Preencher o campo "Telefone" é obrigatório.',
+            'cidadeEmpresa.required' => 'Preencher o campo "Cidade" é obrigatório.',
+            'ruaEndEmpresa.required' => 'Preencher o campo "Rua" é obrigatório.',
+            'numEndEmpresa.required' => 'Preencher o campo "Número" é obrigatório.',
+            'bairroEndEmpresa.required' => 'Preencher o campo "Bairro" é obrigatório.',
+            'cepEndEmpresa.required' => 'Preencher o campo "CEP" é obrigatório.',
+            'objHistEmpresa.required' => 'Preencher o campo "Objetivos e História da Empresa" é obrigatório.'
+        ];
+        $request->validate($rules,$mensagem);
         $senha = \Hash::make($request['senhaEmpresa']);
 
         if($request->senhaEmpresa == $request->confirmarSenhaEmpresa){
@@ -64,6 +81,47 @@ class EmpresaController extends Controller{
                 'cnpj' => $request->cnpjEmpresa,
                 'idUsuario' => $idUsuario,
             ]);
+
+            if($request['recurso1'] == null){
+                $request['recurso1'] = 0;
+            }
+            if($request['recurso2'] == null){
+                $request['recurso2'] = 0;
+            }
+            if($request['recurso3'] == null){
+                $request['recurso3'] = 0;
+            }
+            if($request['recurso4'] == null){
+                $request['recurso4'] = 0;
+            }
+            if($request['recurso5'] == null){
+                $request['recurso5'] = 0;
+            }
+            if($request['recurso6'] == null){
+                $request['recurso6'] = 0;
+            }
+            if($request['recurso7'] == null){
+                $request['recurso7'] = 0;
+            }
+            $recursos_acessibilidades = RecursosAcessibilidade::create([
+                'comunicacaoLibras' => $request->recurso1,
+                'banheirosAcessiveis' => $request->recurso2,
+                'corredoresAcessiveis' => $request->recurso3,
+                'rampas' => $request->recurso4,
+                'elevadores' => $request->recurso5,
+                'contBraile' => $request->recurso6,
+                'espacoAmploParaLocomocao' => $request->recurso7,
+                'idUsuario' => $idUsuario,
+            ]);
+
+            $_SESSION['usuario']['id'] = $idUsuario;
+            $_SESSION['usuario']['nome'] = $request->nomeEmpresa;
+            $_SESSION['usuario']['email'] = $request->emailEmpresa;
+            $_SESSION['usuario']['senha'] = $request->senhaEmpresa;
+            $_SESSION['usuario']['telefone'] = $request->telefoneEmpresa;
+            $_SESSION['usuario']['cidade'] = $request->cidadeEmpresa;
+            $_SESSION['usuario']['tipoUser'] = 'empresa';
+
             return redirect()->route('empresa.inicioCursoAlert');
         }
     }
@@ -88,7 +146,10 @@ class EmpresaController extends Controller{
     public function selecionarVaga(){
         $idEmpresa = $_SESSION["usuario"]["id"];
         $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
-        return view('empresa.selecionarVaga', compact('vagas'));
+        if(isset($vagas[0])){
+            return view('empresa.selecionarVaga', compact('vagas'));
+        }
+        return view('empresa.selecionarVaga');
     }
 
     public function showCandidatos(Request $infosVaga){
@@ -175,8 +236,14 @@ class EmpresaController extends Controller{
 
     public function verVagasCadastradas(){
         $idEmpresa = $_SESSION["usuario"]["id"];
-        $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
-        return view('empresa.verVagasCadastradas', compact('vagas'));
+        $search = request('search');
+
+        if($search){
+            $vagas = Vagas::where([['idUsuario', '=', $idEmpresa],['titulo','like','%'.$search.'%']])->get();
+        }else{
+            $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
+        }
+        return view('empresa.verVagasCadastradas', compact('vagas')); 
     }
 
     public function deleteEmpresa($idUsuario){

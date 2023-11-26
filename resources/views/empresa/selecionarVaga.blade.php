@@ -62,6 +62,7 @@
   </div>
 </div>
 <div class="conteudo">
+  @if (isset($vagas))
     <h2>Selecione para qual vaga deseja buscar um candidato:</h2>
     <form action="{{ route('empresa.showCandidatos') }}" method="POST">
         @csrf
@@ -72,6 +73,10 @@
         </select>
         <button type="submit">Buscar</button>
     </form>
+  @else
+    <h2>Você ainda não possui nenhuma vaga!</h2>
+    <p><a href=''>Cadastre</a> uma para poder ver os candidatos recomendados para você.</p>
+  @endif
   </div>
 </main>
 <x-footer />

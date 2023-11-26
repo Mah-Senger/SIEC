@@ -10,12 +10,13 @@ class RecursosAcessibilidade extends Model
     use HasFactory;
 
     protected $fillable=[
-        'funcLibras',
+        'comunicacaoLibras',
         'banheirosAcessiveis',
         'corredoresAcessiveis',
         'rampas',
         'elevadores',
         'contBraile',
         'espacoAmploParaLocomocao',
+        'idUsuario'
     ];
 }

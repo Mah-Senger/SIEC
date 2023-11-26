@@ -5,18 +5,18 @@
   box-sizing: border-box;
   font-family: 'Poppins',sans-serif;
 }
-body{
+/*body{
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 50px;
   background: white;
-}
+}*/
 .title{
   text-align: center;
 }
-.container{
+/*.container{
   height: auto;
   max-width: 500px;
   width: 100%;
@@ -24,7 +24,7 @@ body{
   padding: 25px 30px;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-}
+}*/
 .container .title{
   font-size: 25px;
   font-weight: 500;
@@ -52,6 +52,30 @@ body{
   border-bottom-width: 2px;
   transition: all 0.3s ease;
 }
+
+select{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 10px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+textarea{
+  height: 100px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 10px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+
 .recursos{
   margin-top: 20px;
   text-align: justify;
@@ -67,6 +91,7 @@ body{
   margin: 0 auto;
   margin-top:20px;
   text-align: center;
+  color: white;
 }
 .button:hover {
   background-color: #1b4768;
