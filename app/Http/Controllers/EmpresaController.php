@@ -7,6 +7,7 @@ use App\Models\Empresa;
 use App\Models\Candidato;
 use App\Models\Vagas;
 use App\Models\InteresseCandidatos;
+use App\Models\Habilidades;
 use App\Models\RecursosAcessibilidade;
 use App\Models\RequisitosHabilidadesVagas;
 use App\Models\RequisitosHabilidadesCandidatos;
@@ -17,12 +18,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EmpresaController extends Controller{
-    
-    public function showCadastroEmpresa(){
-        return view('empresa.cadastro');
-    }
 
-    public function showCadastroEmpresa2(){
+    public function showCadastroEmpresa(){
         return view('empresa.create');
     }
 
@@ -117,6 +114,14 @@ class EmpresaController extends Controller{
                 'idUsuario' => $idUsuario,
             ]);
 
+            $_SESSION['usuario']['id'] = $idUsuario;
+            $_SESSION['usuario']['nome'] = $request->nomeEmpresa;
+            $_SESSION['usuario']['email'] = $request->emailEmpresa;
+            $_SESSION['usuario']['senha'] = $request->senhaEmpresa;
+            $_SESSION['usuario']['telefone'] = $request->telefoneEmpresa;
+            $_SESSION['usuario']['cidade'] = $request->cidadeEmpresa;
+            $_SESSION['usuario']['tipoUser'] = 'empresa';
+
             return redirect()->route('empresa.inicioCursoAlert');
         }
     }
@@ -141,7 +146,10 @@ class EmpresaController extends Controller{
     public function selecionarVaga(){
         $idEmpresa = $_SESSION["usuario"]["id"];
         $vagas = Vagas::where('idUsuario', '=', $idEmpresa)->get();
-        return view('empresa.selecionarVaga', compact('vagas'));
+        if(isset($vagas[0])){
+            return view('empresa.selecionarVaga', compact('vagas'));
+        }
+        return view('empresa.selecionarVaga');
     }
 
     public function showCandidatos(Request $infosVaga){

@@ -26,13 +26,13 @@
     @endif
 
   <div class="container">
-    <div class="title">Cadastro Empresa</div>
+    <div class="title">Cadastro Empresa</div><br>
     <div class="content">
       <form action="{{ route('empresa.create') }}" method="post">
       @csrf
        <div class="user-details">
           <div class="input-box">
-            <span for="cnpjEmpresa" class="details">CNPJ:</span>
+            <span for="cnpjEmpresa" class="details">CNPJ (Cadastro Nacional de Pessoa Jurídica):  (não utilize traços ou pontos)</span>
             <input type="text" id="cnpjEmpresa" class="" name="cnpjEmpresa" value="{{ old('cnpjEmpresa') }}" placeholder="Digite o CNPJ da Empresa" required>
           </div>
 
@@ -75,7 +75,7 @@
           </div>
 
           <div class="input-box">
-            <span for="telefoneEmpresa" class="details">Telefone:</span>
+            <span for="telefoneEmpresa" class="details">Telefone:  (não utilize traços ou pontos)</span>
             <input type="text" id="telefoneEmpresa" name="telefoneEmpresa" value="{{ old('telefoneEmpresa') }}" placeholder="Digite o telefone" required>
           </div>
 
@@ -95,7 +95,7 @@
           </div>
 
           <div class="input-box">
-            <span class="details" for="cepEndEmpresa">(Endereço) CEP:</span>
+            <span class="details" for="cepEndEmpresa">(Endereço) CEP:  (não utilize traços ou pontos)</span>
             <input type="text" id="cepEndEmpresa" name="cepEndEmpresa" value="{{ old('cepEndEmpresa') }}" placeholder="Digite o CEP" required>
           </div>
 
@@ -107,14 +107,14 @@
         </div>
         </div>
         <div class="gender-details">
-            <h3>Recursos de acessibilidade que a empresa possui:</h3>
+          <h3>Recursos de acessibilidade que a empresa possui:</h3>
           <input type="checkbox" name="recurso1" value="1">Interprete de libras<br>
           <input type="checkbox" name="recurso2" value="1">Banheiros acessiveis<br>
           <input type="checkbox" name="recurso3" value="1">Corredores acassiveis<br>
           <input type="checkbox" name="recurso4" value="1">Rampas<br>
           <input type="checkbox" name="recurso5" value="1">Elevadores<br>
           <input type="checkbox" name="recurso6" value="1">Conteúdo em braile<br>
-          <input type="checkbox" name="recurso7" value="1">Espaço amplo para locomoção<br>
+        </div>
 
           <button class="button" type="submit">Cadastrar</button>
           <br><br><br>

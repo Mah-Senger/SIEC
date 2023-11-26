@@ -6,6 +6,7 @@ use App\Models\Usuarios;
 use App\Models\Empresa;
 use App\Models\Candidato;
 use App\Models\Vagas;
+use App\Models\Habilidades;
 use App\Models\RecursosAcessibilidade;
 use App\Models\RequisitosHabilidadesVagas;
 use App\Models\RequisitosHabilidadesCandidatos;
@@ -18,10 +19,12 @@ use Illuminate\Support\Facades\DB;
 class CandidatoController extends Controller
 {
     public function showCadastroCandidato(){
-        return view('candidato.cadastro');
+        $habilidades = Habilidades::all();
+        return view('candidato.cadastro', compact('habilidades'));
     }
 
     public function createCandidato(Request $request){
+        // dd($request);
         $rules = [
             'nomeCandidato' => ['required', 'string', 'max:255'],
             'emailCandidato' => ['required', 'string'],
@@ -106,6 +109,23 @@ class CandidatoController extends Controller
                 'espacoAmploParaLocomocao' => $request->recurso7,
                 'idUsuario' => $idUsuario,
             ]);
+            for($i=1; $i<=50; $i++){
+                $habilidadeAtual = 'habilidade' . $i;
+                if(isset($request->$habilidadeAtual)){
+                    $habilidades = HabilidadesCandidato::create([
+                        'idCandidato' => $idUsuario,
+                        'idHabilidade' => $request->$habilidadeAtual,
+                    ]);
+                }
+            }
+
+            $_SESSION['usuario']['id'] = $idUsuario;
+            $_SESSION['usuario']['nome'] = $request->nomeCandidato;
+            $_SESSION['usuario']['email'] = $request->emailCandidato;
+            $_SESSION['usuario']['senha'] = $request->senhaCandidato;
+            $_SESSION['usuario']['telefone'] = $request->telefoneCandidato;
+            $_SESSION['usuario']['cidade'] = $request->cidadeCandidato;
+            $_SESSION['usuario']['tipoUser'] = 'candidato';
 
             return redirect()->back();
         }

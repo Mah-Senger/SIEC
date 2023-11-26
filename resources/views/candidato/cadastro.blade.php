@@ -26,7 +26,7 @@
     @endif
 
     <div class="container">
-    <div class="title">Cadastro Candidato</div>
+    <div class="title">Cadastro Candidato</div><br>
     <div class="content">
     <form action="{{ route('candidato.create') }}" method="post">
         @csrf
@@ -37,7 +37,7 @@
         </div>
 
         <div class="input-box">
-        <label for="cpfCandidato" class="details">CPF (Cadastro de Pessoa Física): </label>
+        <label for="cpfCandidato" class="details">CPF (Cadastro de Pessoa Física): (não utilize traços ou pontos)</label>
         <input type="text" id="cpfCandidato" name="cpfCandidato" value="{{ old('cpfCandidato') }}" placeholder="Digite seu CPF" required>
         </div>
         
@@ -57,7 +57,7 @@
         </div>
 
         <div class="input-box">
-        <label for="telefoneCandidato" class="details">Telefone: </label>
+        <label for="telefoneCandidato" class="details">Telefone: (não utilize traços ou pontos)</label>
         <input type="text" id="telefoneCandidato" name="telefoneCandidato" value="{{ old('telefoneCandidato') }}" placeholder="Digite seu telefone" required>
         </div>
 
@@ -106,6 +106,12 @@
           <input type="checkbox" name="recurso5" value="1">Elevadores<br>
           <input type="checkbox" name="recurso6" value="1">Conteúdo em braile<br>
           <input type="checkbox" name="recurso7" value="1">Espaço amplo para locomoção<br>
+
+        <h3>Habilidades que você possui: </h3>
+        <label class="details">Pode escolher quantas desejar</label><br><br>
+        @foreach ($habilidades as $habilidade)
+           <input type="checkbox" name="habilidade{{$habilidade['id']}}" value="{{$habilidade['id']}}">{{$habilidade['nomeHabilidade']}}<br>            
+        @endforeach
 
         <button type="submit" class="button">Cadastrar</button>
         <br><br><br>
