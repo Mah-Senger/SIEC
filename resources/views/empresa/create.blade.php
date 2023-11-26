@@ -26,7 +26,7 @@
     @endif
 
   <div class="container">
-    <div class="title">Cadastro Inicial Empresa</div>
+    <div class="title">Cadastro Empresa</div>
     <div class="content">
       <form action="{{ route('empresa.create') }}" method="post">
       @csrf
