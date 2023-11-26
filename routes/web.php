@@ -34,6 +34,10 @@ Route::get('/empresa/inicioCurso', [App\Http\Controllers\EmpresaController::clas
 
 Route::get('/empresa/finalCurso', [App\Http\Controllers\EmpresaController::class, 'finalCursoAlert'])->name('empresa.finalCursoAlert'); //Alert final curso
 
+Route::get('/selecionarTipoCadastro', function () {
+    return view('usuario.selecionarTipoCadastro');
+})->name('usuario.selecionarTipoCadastro');
+
 //Validando as sessions
 if(isset($_SESSION['usuario'])){
     if($_SESSION['usuario']['tipoUser'] == "candidato"){ 
@@ -82,6 +86,26 @@ if(isset($_SESSION['usuario'])){
         Route::get('/empresa/interesseCandidato/{idCandidato}', [App\Http\Controllers\EmpresaController::class, 'manifestarInteresseCandidato'])->name('empresa.manifestarInteresseCandidato'); //Manifestar interesse em um candidato
 
         Route::get('/empresa/verInteresses', [App\Http\Controllers\EmpresaController::class, 'verInteresses'])->name('empresa.verInteresses'); //Ver minhas manifestações de interesse em candidatos
+
+        Route::get('/empresa/aula1', function () {
+            return view('empresa.paginaAula1');
+        })->name('empresa.aula1');
+
+        Route::get('/empresa/aula2', function () {
+            return view('empresa.paginaAula2');
+        })->name('empresa.aula2');
+
+        Route::get('/empresa/aula3', function () {
+            return view('empresa.paginaAula3');
+        })->name('empresa.aula3');
+
+        Route::get('/empresa/aula4', function () {
+            return view('empresa.paginaAula4');
+        })->name('empresa.aula4');
+
+        Route::get('/empresa/questionario', function () {
+            return view('empresa.questionario');
+        })->name('empresa.questionario');
     }
 }
 

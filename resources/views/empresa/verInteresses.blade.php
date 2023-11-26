@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ver meus interesses</title>
+    <link rel="shortcut icon" type="imagex/png" href="{{asset("images/siec.ico")}}">
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/pagina21.css')}}">
@@ -68,7 +69,7 @@
             <i class='bx bx-user' ></i>
            <div class="name_job">
              <div class="name">{{ $_SESSION['usuario']['nome'] }}</div>
-             <div class="job">nicho profissional</div>
+             <div class="job">Perfil: Empresa</div>
            </div>
          </div>
          <i class='bx bx-log-out' id="log_out" ></i>

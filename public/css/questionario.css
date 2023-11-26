@@ -7,19 +7,22 @@
   font-family: "Poppins" , sans-serif;
 }
 .sidebar{
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   height: 100%;
-  background-color: rgba(27, 71, 104, 0.1);
-  padding: 6px 20px;
+  width: 78px;
+  background: #ffffff;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
 }
 .conteudo{
   margin-left: 78px;
   padding: 30px;
 }
 .sidebar.open{
-  width: 280px;
+  width: 250px;
 }
 .conteudo.open{
   margin-left: 250px;
@@ -215,25 +218,9 @@
     margin-right: 10px;
     color: white;
   }
-.button:hover {
+  .button:hover {
     background-color: #1b4768;
   }
-
-.alinharBotaoPag1{
-  display: flex;
-  justify-content: end;
-}
-
-.alinharBotao{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.selecionada{
-  box-shadow: 0px 0px 15px 1px #1b4768;
-}
-
 
 @media (max-width: 420px) {
   .sidebar li .tooltip{
