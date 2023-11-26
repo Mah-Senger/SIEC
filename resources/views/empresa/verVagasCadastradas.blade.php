@@ -2,7 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <title> Dashboard </title>
+    <title>Ver minhas vagas</title>
+    <link rel="shortcut icon" type="imagex/png" href="{{asset("images/siec.ico")}}">
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/pagina21.css')}}">
@@ -48,19 +49,12 @@
        </a>
        <span class="tooltip">Interesses</span>
      </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Configurações</span>
-       </a>
-       <span class="tooltip">Cofigurações</span>
-     </li>
      <li class="profile">
          <div class="profile-details">
             <i class='bx bx-user' ></i>
            <div class="name_job">
-             <div class="name">Empresa X</div>
-             <div class="job">nicho profissional</div>
+             <div class="name">{{$_SESSION['usuario']['nome']}}</div>
+             <div class="job">Perfil: Empresa</div>
            </div>
          </div>
          <i class='bx bx-log-out' id="log_out" ></i>

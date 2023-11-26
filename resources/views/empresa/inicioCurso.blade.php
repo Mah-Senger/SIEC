@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="pt-br">
     <meta charset="utf-8">
+    <link rel="shortcut icon" type="imagex/png" href="{{asset("images/siec.ico")}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Prosseguir</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -53,7 +54,7 @@
   <div class="all">
     <div class="jumbotron">
       <p class="lead">Para a próxima etapa de seu cadastro, preparamos um minicurso para você e sua equipe.</p>
-      <a class="btn btn-primary btn-lg" href="#" role="button">Prosseguir</a>
+      <a class="btn btn-primary btn-lg" href="{{ route('empresa.aula1') }}" role="button">Prosseguir</a>
     </div>
   </div>
 <x-footer />
