@@ -11,6 +11,8 @@ use App\Models\RequisitosHabilidadesVagas;
 use App\Models\RequisitosHabilidadesCandidatos;
 use App\Models\HabilidadesVaga;
 use App\Models\HabilidadesCandidato;
+use App\Models\InteresseCandidatos;
+use App\Models\InteresseVagas;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -62,7 +64,7 @@ class CandidatoController extends Controller
     }
 
     public function verTodasVagas(){
-        $idCandidato = 1;
+        $idCandidato = $_SESSION['usuario']['id'];
         $vagas = Vagas::all();
         $todasVagas = array();
 
@@ -70,10 +72,12 @@ class CandidatoController extends Controller
             $empresa = Usuarios::where('id', '=', $vaga->idUsuario)->get()[0];
             $infos = ['idVaga' => $vaga->id,
                     'nomeVaga' => $vaga->titulo,
-                    'nomeEmpresa' => $empresa->nome];
+                    'nomeEmpresa' => $empresa->nome,
+                    'descricaoVaga' => $vaga->descricao];
             array_push($todasVagas, $infos);
         }
-        dd($todasVagas);
+        // dd($todasVagas);
+        return view('candidato.verTodasVagas', compact('todasVagas'));
     }
 
     public function deleteCandidato($idUsuario){
@@ -142,13 +146,10 @@ class CandidatoController extends Controller
 
     public function verVagasRecomendadas(){
         //Testando a compatibilidade entre empresa e candidatos
-        $idCandidato = 3;
-        $request = Candidato::find($idCandidato);
-        $requestAcess = RecursosAcessibilidade::where("idUsuario", '=', $idCandidato)->get()[0];
-        // dd($requestAcess);
-        $requisitosCandidatos = HabilidadesCandidato::where("idCandidato", '=', $idCandidato)->get();
-        // dd($requisitosCandidatos);
-        //$vagas = Vagas::where('idUsuario', '=', "$idCandidato")->get();
+        $idUsuario = $_SESSION['usuario']['id'];
+        $request = Candidato::where('idUsuario', '=', $idUsuario)->take(1)->get()[0];
+        $requestAcess = RecursosAcessibilidade::where("idUsuario", '=', $idUsuario)->get()[0];
+        $requisitosCandidatos = HabilidadesCandidato::where("idCandidato", '=', $idUsuario)->get();
         $requestEmpresas = Empresa::all();
         $empresasCompativeisCandidato = array();
         $vagaIdeaisDuplicadas = array();
@@ -168,39 +169,63 @@ class CandidatoController extends Controller
                 array_push($empresasCompativeisCandidato, $empresa);
             }
         }
-        // dd($empresasCompativeisCandidato);
 
         foreach($requisitosCandidatos as $requisito){
             foreach($empresasCompativeisCandidato as $empresa){
                 $vagas = Vagas::where('idUsuario', '=', $empresa->idUsuario)->get();
                 foreach($vagas as $vaga){
                     $requisitosHabilidadesVaga = HabilidadesVaga::where('idVaga', '=', $vaga->id)->get();
-                    // dd($requisitosHabilidadesVaga);
                     foreach ($requisitosHabilidadesVaga as $habilidade){
                         if($habilidade->idHabilidade == $requisito->idHabilidade){
                             array_push($vagaIdeaisDuplicadas, $vaga);
                         }
                     }
                 }
-                // $habilidades = HabilidadesCandidato::where("idCandidato", '=', $empresa->idUsuario)->get();
-                // foreach ($habilidadesCandidato as $habilidade){
-                //     if($habilidade->idHabilidade == $requisito->idHabilidade){
-                //         array_push($candidatosIdeaisDuplicados, $empresa);
-                //     }
-                // }
                 
             }
         }
-        // dd($vagaIdeaisDuplicadas);
-        // die();
         // Codifica cada array para comparação e obtém os únicos
         $vagaIdeais = array_map('json_decode', array_unique(array_map('json_encode', $vagaIdeaisDuplicadas)));
 
         // Remove as chaves duplicadas
-        $empresasSelecionadas = array_values($vagaIdeais);
-        dd($empresasSelecionadas);
+        $vagasSelecionadas = array_values($vagaIdeais);
+        // dd($vagasSelecionadas);
 
-        // return view('empresa.showCandidatos', compact('candidatosSelecionados'));
-        
+        $vagasRecomendadas = array();
+        foreach($vagasSelecionadas as $vaga){
+            $usuarioEmpresa = Usuarios::where('id', '=', $vaga->idUsuario)->get()[0];
+            $info = ['idVaga' => $vaga->id, 'nomeVaga' => $vaga->titulo, 'nomeEmpresa' => $usuarioEmpresa->nome, 'descricaoVaga' => $vaga->descricao];
+            array_push($vagasRecomendadas, $info);
+        }
+
+        return view('candidato.showVagasRecomendadas', compact('vagasRecomendadas'));
+    }
+
+    public function verMeusInteresses(){
+        $idUsuario = $_SESSION['usuario']['id'];
+        $interesses = InteresseVagas::where('idCandidato', '=', $idUsuario)->get();
+        $vagas = array();
+        if($interesses){
+            foreach($interesses as $interesse){
+                $vaga = Vagas::where('id', '=', $interesse->idVaga)->get()[0];
+                array_push($vagas, $vaga);
+            }
+            return view('candidato.verMeusInteresses', compact('vagas'));
+        }
+        return view('candidato.verMeusInteresses');
+    }
+
+    public function verInteressesEmMim(){
+        $idUsuario = $_SESSION['usuario']['id'];
+        $interesses = InteresseCandidatos::where('idCandidato', '=', $idUsuario)->get();
+        $empresas = array();
+        if($interesses){
+            foreach($interesses as $interesse){
+                $empresa = Usuarios::where('id', '=', $interesse->idEmpresa)->get()[0];
+                array_push($empresas, $empresa);
+            }
+            return view('candidato.verInteressesEmMim', compact('empresas'));
+        }
+        return view('candidato.verInteressesEmMim');
     }
 }

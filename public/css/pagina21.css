@@ -75,3 +75,10 @@ main{
     outline:solid 3px var(--cinza-escuro);
     border-radius:6px;
 }
+
+h5{
+    background-color: #D9D9D9;
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+}

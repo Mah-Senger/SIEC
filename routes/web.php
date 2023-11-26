@@ -54,6 +54,10 @@ if(isset($_SESSION['usuario'])){
         Route::post('/candidato/update', [App\Http\Controllers\CandidatoController::class, 'updateCandidato'])->name('candidato.updateCandidato'); //processsamento do editar
 
         Route::get('/candidato/verVagasRecomendadas', [App\Http\Controllers\CandidatoController::class, 'verVagasRecomendadas'])->name('candidato.verVagasRecomendadas'); 
+
+        Route::get('/candidato/verMeusInteresses', [App\Http\Controllers\CandidatoController::class, 'verMeusInteresses'])->name('candidato.verMeusInteresses'); 
+
+        Route::get('/candidato/verInteressesEmMim', [App\Http\Controllers\CandidatoController::class, 'verInteressesEmMim'])->name('candidato.verInteressesEmMim'); 
     }
     
     if($_SESSION['usuario']['tipoUser'] == "empresa"){
@@ -111,5 +115,5 @@ Route::get('pagina8', function () {
 });
 
 Route::get('pagina', function () {
-    return view('empresa.pagina19');
+    return view('candidato.pagina15');
 });
