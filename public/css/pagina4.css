@@ -91,6 +91,7 @@ textarea{
   margin: 0 auto;
   margin-top:20px;
   text-align: center;
+  color: white;
 }
 .button:hover {
   background-color: #1b4768;
