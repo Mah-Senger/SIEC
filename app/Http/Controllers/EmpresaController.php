@@ -134,13 +134,26 @@ class EmpresaController extends Controller{
         return view('empresa.finalCurso');
     }
 
-    public function showDetalhesEmpresa($id){
+    public function showDetalhesEmpresa(){
+        $id = $_SESSION['usuario']['id'];
         if(!$empresa = Empresa::find($id)){
             return redirect()->back();
         }
         $usuario = Usuarios::find($empresa->idUsuario);
         $usuario->nome = ucwords ($usuario->nome);
-        return view('empresa.show', compact('empresa', 'usuario'));
+        $recursos = RecursosAcessibilidade::where('idUsuario', '=', $id)->get()[0];
+        $recursosTratados = array();
+        $lista = ["comunicacaoLibras", "banheirosAcessiveis", "corredoresAcessiveis", "rampas", "elevadores", "contBraile", "espacoAmploParaLocomocao"];
+        foreach($lista as $i){
+            if($recursos[$i] == true){
+                $info = ['recursos' => $i, 'status' => 'Sim'];
+            }else{
+                $info = ['recursos' => $i, 'status' => 'Não'];
+            }
+            array_push($recursosTratados, $info);
+        }
+        // dd($recursosTratados);
+        return view('empresa.perfilEmpresa', compact('empresa', 'usuario', 'recursosTratados'));
     }
 
     public function selecionarVaga(){

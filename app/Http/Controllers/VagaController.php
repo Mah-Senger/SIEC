@@ -19,9 +19,13 @@ class VagaController extends Controller
         if(!$vaga = Vagas::find($id)){
             return redirect()->back();
         }
-        foreach($vaga as $vagaTratada){
-            $habilidades = explode(";", $vaga->requisitosHabilidades);
-        }
+        $habilidadesVaga = array();
+            $habilidades = HabilidadesVaga::where('idVaga', '=', $id)->get();
+            foreach($habilidades as $hab){
+                $habilidadeNome = Habilidades::where('id', '=', $hab->idHabilidade)->get()[0];
+                array_push($habilidadesVaga, $habilidadeNome);
+            }
+        // dd($habilidadesVaga);
         $empresa = Usuarios::find($vaga->idUsuario);
         // $idUsuario = 3;
         $idUsuario = $_SESSION['usuario']['id'];
@@ -29,10 +33,10 @@ class VagaController extends Controller
         foreach($validacao as $valid){
             if(isset($valid->idCandidato)){
                 $validacaoInteresse = $valid->idCandidato;
-                return view('vaga.show', compact('vaga', 'habilidades', 'empresa', 'validacaoInteresse'));
+                return view('candidato.verVaga', compact('vaga', 'habilidadesVaga', 'empresa', 'validacaoInteresse'));
             }
         }
-        return view('candidato.pagina15', compact('vaga', 'habilidades', 'empresa'));
+        return view('candidato.verVaga', compact('vaga', 'habilidadesVaga', 'empresa'));
     }
 
     public function deleteVaga($idVaga){

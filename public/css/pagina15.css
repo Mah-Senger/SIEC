@@ -3,6 +3,10 @@ main{
     margin-top: 50px;
 }
 
+#sucessoMsg{
+    margin-top: 100px;
+    margin-bottom: -100px;
+}
 
 .main-header{
     width:100%;
