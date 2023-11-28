@@ -70,6 +70,7 @@
                     <button type="submit" class="main-pesquisa-botao">Enviar</button>
                 </form>
             </div>
+            <div class="main-pesquisa-conteudo"><p><a href="{{ route('empresa.cadastroVaga') }}">Cadastre</a> uma nova vaga.</p></div>
             <div class="main-pesquisa-conteudo">
             @foreach ($vagas as $vaga)
                 <div class="main-pesquisa-link">

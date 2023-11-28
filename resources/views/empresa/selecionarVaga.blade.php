@@ -75,7 +75,7 @@
     </form>
   @else
     <h2>Você ainda não possui nenhuma vaga!</h2>
-    <p><a href=''>Cadastre</a> uma para poder ver os candidatos recomendados para você.</p>
+    <p><a href="{{ route('empresa.cadastroVaga') }}">Cadastre</a> uma para poder ver os candidatos recomendados para você.</p>
   @endif
   </div>
 </main>
