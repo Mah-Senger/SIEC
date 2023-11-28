@@ -74,6 +74,20 @@
             @foreach ($vagas as $vaga)
                 <div class="main-pesquisa-link">
                     <span><a href="#">{{ $vaga['titulo'] }}</a>: {{ $vaga['descricao']}}</span>
+                    <div class="alinharEditarExcluir">
+                      <a href="{{route('empresa.editarVaga', $vaga['id'])}}" style="text-decoration: none;">
+                          <div style="background-color: green; padding: 10px; border: none; border-radius: 10px; color: black;" class="EditarExcluir">
+                            <i class='bx bxs-edit'></i>
+                            <span>Editar</span>
+                          </div>
+                        </a><br>
+                        <a href="{{route('empresa.deleteVaga', $vaga['id'])}}" style="text-decoration: none;">
+                          <div style="background-color: red; padding: 10px; border: none; border-radius: 10px; color: black;" class="EditarExcluir">
+                            <i class='bx bxs-message-square-x'></i>
+                            <span>Excluir</span>
+                          </div>
+                        </a>
+                      </div>
                 </div>
             @endforeach
             </div>

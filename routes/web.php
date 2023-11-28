@@ -36,6 +36,11 @@ Route::get('/selecionarTipoCadastro', function () {
     return view('usuario.selecionarTipoCadastro');
 })->name('usuario.selecionarTipoCadastro');
 
+Route::get('/empresa/selecionarVaga', [App\Http\Controllers\EmpresaController::class, 'selecionarVaga'])->name('empresa.selecionarVaga'); //Selecionar qual vaga deseja ver candidatos recomendados
+
+Route::get('/candidato/verVagasRecomendadas', [App\Http\Controllers\CandidatoController::class, 'verVagasRecomendadas'])->name('candidato.verVagasRecomendadas'); 
+
+
 //Validando as sessions
 if(isset($_SESSION['usuario'])){
     if($_SESSION['usuario']['tipoUser'] == "candidato"){ 
@@ -104,6 +109,14 @@ if(isset($_SESSION['usuario'])){
         Route::get('/empresa/questionario', function () {
             return view('empresa.questionario');
         })->name('empresa.questionario');
+
+        Route::get('/empresa/cadastroVaga', [App\Http\Controllers\VagaController::class, 'cadastroVaga'])->name('empresa.cadastroVaga'); //Cadastro de vaga
+
+        Route::post('/empresa/createVaga', [App\Http\Controllers\VagaController::class, 'createVaga'])->name('empresa.createVaga'); //Processamento do cadastro de vaga
+
+        Route::get('/empresa/editarVaga/{id}', [App\Http\Controllers\VagaController::class, 'editarVaga'])->name('empresa.editarVaga'); //Editar da vaga
+
+        Route::post('/empresa/updateVaga', [App\Http\Controllers\VagaController::class, 'updateVaga'])->name('empresa.updateVaga'); //Processamento do editar da vaga
     }
 }
 
