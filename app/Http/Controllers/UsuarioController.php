@@ -44,6 +44,7 @@ class UsuarioController extends Authenticatable
         if($_SESSION['usuario']['tipoUser'] == 'candidato'){
             return redirect()->route('candidato.verVagasRecomendadas');
         }else{
+
             return redirect()->route('empresa.selecionarVaga');
         }
         // return redirect()->route('login')->with('success', 'Login feito com sucesso');

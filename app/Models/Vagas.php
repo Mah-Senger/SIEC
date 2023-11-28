@@ -17,5 +17,6 @@ class Vagas extends Model
         'cargaHoraria',
         'tempoContrato',
         'periodoPagamento',
+        'idUsuario',
     ];
 }
