@@ -69,8 +69,8 @@
                     <input type="text" name="search" class="main-pesquisa-input" placeholder="Pesquisar...">
                     <button type="submit" class="main-pesquisa-botao">Enviar</button>
                 </form>
+                <a href="{{ route('empresa.cadastroVaga') }}">Nova vaga</a>
             </div>
-            <div class="main-pesquisa-conteudo"><p><a href="{{ route('empresa.cadastroVaga') }}">Cadastre</a> uma nova vaga.</p></div>
             <div class="main-pesquisa-conteudo">
             @foreach ($vagas as $vaga)
                 <div class="main-pesquisa-link">

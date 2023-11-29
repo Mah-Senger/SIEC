@@ -33,7 +33,7 @@
          <span class="tooltip">Ver Vagas</span>
       </li>
       <li>
-       <a href="#">
+       <a href="{{route('candidato.showDetalhesCandidato')}}">
          <i class='bx bx-user' ></i>
          <span class="links_name">Meu perfil</span>
        </a>

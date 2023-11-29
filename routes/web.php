@@ -54,7 +54,7 @@ if(isset($_SESSION['usuario'])){
 
         Route::get('/vaga/interesseCreate/{id}/{idUsuario}', [App\Http\Controllers\InteresseVagasController::class, 'createInteresseVaga'])->name('vaga.createInteresse'); //Manifestar interesse na vaga
 
-        Route::get('/candidato/delete/{idUsuario}', [App\Http\Controllers\CandidatoController::class, 'deleteCandidato'])->name('candidato.delete'); //Deletar conta
+        Route::get('/candidato/delete', [App\Http\Controllers\CandidatoController::class, 'deleteCandidato'])->name('candidato.delete'); //Deletar conta
 
         Route::get('/candidato/editar', [App\Http\Controllers\CandidatoController::class, 'editarCandidato'])->name('candidato.editarCandidato'); //Editar conta
 
@@ -64,7 +64,13 @@ if(isset($_SESSION['usuario'])){
 
         Route::get('/candidato/verMeusInteresses', [App\Http\Controllers\CandidatoController::class, 'verMeusInteresses'])->name('candidato.verMeusInteresses'); 
 
-        Route::get('/candidato/verInteressesEmMim', [App\Http\Controllers\CandidatoController::class, 'verInteressesEmMim'])->name('candidato.verInteressesEmMim'); 
+        Route::get('/candidato/verInteressesEmMim', [App\Http\Controllers\CandidatoController::class, 'verInteressesEmMim'])->name('candidato.verInteressesEmMim');
+        
+        Route::post('/candidato/verCandidato', [App\Http\Controllers\EmpresaController::class, 'verCandidato'])->name('candidato.verCandidato'); //selecionar todos os candidatos
+
+        Route::get('/candidato/verEmpresa/{id}', [App\Http\Controllers\CandidatoController::class, 'showDetalhesEmpresa'])->name('candidato.showDetalhesEmpresa');
+
+        Route::get('/candidato/verPerfil', [App\Http\Controllers\CandidatoController::class, 'showDetalhesCandidato'])->name('candidato.showDetalhesCandidato');
     }
     
     if($_SESSION['usuario']['tipoUser'] == "empresa"){
@@ -117,6 +123,8 @@ if(isset($_SESSION['usuario'])){
         Route::get('/empresa/editarVaga/{id}', [App\Http\Controllers\VagaController::class, 'editarVaga'])->name('empresa.editarVaga'); //Editar da vaga
 
         Route::post('/empresa/updateVaga', [App\Http\Controllers\VagaController::class, 'updateVaga'])->name('empresa.updateVaga'); //Processamento do editar da vaga
+
+        Route::get('/empresa/verEmpresa', [App\Http\Controllers\EmpresaController::class, 'showDetalhesEmpresa'])->name('empresa.showDetalhesEmpresa'); //Editar da vaga
     }
 }
 
@@ -145,10 +153,6 @@ Route::get('pagina24', function () {
     return view('candidato.pagina24');
 });
 
-Route::get('pagina8', function () {
-    return view('empresa.pagina8');
-});
-
 Route::get('pagina', function () {
-    return view('candidato.pagina15');
+    return view('candidato.pagina152');
 });
