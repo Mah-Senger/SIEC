@@ -51,29 +51,31 @@
         </div>
     
         <div class="d-flex flex-column text-start">
-            <h2 class="fs-2 fw-bold">Informações da vaga</h2>
-            <div class="main-texto">
-                <ul><h4>Empresa Responsável: <a href="">{{$empresa->nome}}</a></h4></ul>
-                <ul><h4>Requisitos e habilidades</h4></ul>
+            <h1 class="fw-bold">Informações da vaga</h1>
+        </div><br><br>
+        <div class="d-flex flex-column text-start">
+            <h4 class="fs-2 fw-bold">Empresa Responsável: <a href="">{{$empresa->nome}}</a></h4>
+        </div><br>
+        <div class="d-flex flex-column text-start">
+            <h4 class="fs-2 fw-bold">Requisitos e habilidades</h4>
                 @foreach ($habilidadesVaga as $habilidade)
                     <ul>{{$habilidade['nomeHabilidade']}}</ul>
                 @endforeach
-            </div>
         </div>
         <div class="d-flex flex-column text-start">
-            <h2 class="fs-2 fw-bold">Descrição da Vaga</h2>
+            <h4 class="fs-2 fw-bold">Descrição da Vaga</h4>
             <p class="lh-base">{{$vaga->descricao}}</p>
         </div>
         <div class="d-flex flex-column text-start">
-            <h2 class="fs-2 fw-bold">Salário</h2>
+            <h4 class="fs-2 fw-bold">Salário</h4>
             <p class="lh-base">O salário está proposto como R$ {{$vaga->salario}},00, num intervalo de {{$vaga->periodoPagamento}} dias.</p>
         </div>
         <div class="d-flex flex-column text-start">
-            <h2 class="fs-2 fw-bold">Carga horária</h2>
+            <h4 class="fs-2 fw-bold">Carga horária</h4>
             <p class="lh-base">A contratante necessita de {{$vaga->cargaHoraria}} de trabalho semanais.</p>
         </div>
         <div class="d-flex flex-column text-start">
-            <h2 class="fs-2 fw-bold">Tempo de Contrato</h2>
+            <h4 class="fs-2 fw-bold">Tempo de Contrato</h4>
             <p class="lh-base">O contrato terá duração de {{$vaga->tempoContrato}} meses.</p>
         </div>
 
