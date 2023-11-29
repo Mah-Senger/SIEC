@@ -61,7 +61,7 @@
              <div class="job">Perfil: Candidato</div>
            </div>
          </div>
-         <a href="{{ route("sair") }}"><i class='bx bx-log-out' id="log_out" ></i></a>
+         <a href="{{ route('sair') }}"><i class='bx bx-log-out' id="log_out" ></i></a>
      </li>
     </ul>
   </div>

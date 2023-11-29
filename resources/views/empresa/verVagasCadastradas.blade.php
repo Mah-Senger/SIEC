@@ -57,7 +57,7 @@
              <div class="job">Perfil: Empresa</div>
            </div>
          </div>
-         <i class='bx bx-log-out' id="log_out" ></i>
+         <a href="{{ route('sair') }}"><i class='bx bx-log-out' id="log_out" ></i></a>
      </li>
     </ul>
   </div>
