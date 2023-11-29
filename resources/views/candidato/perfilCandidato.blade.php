@@ -58,12 +58,19 @@
         </div><br>
 
         <div class="d-flex flex-column text-start">
-            <h2 class="fs-2 fw-bold">Recursos de acessibilidade oferecidos</h2>
+            <h2 class="fs-2 fw-bold">Habilidades</h2>
+                @foreach ($habilidadesCandidato as $habilidade)
+                    <ul>{{$habilidade['nomeHabilidade']}}</ul>
+                @endforeach
+        </div><br>
+
+        <div class="d-flex flex-column text-start">
+            <h2 class="fs-2 fw-bold">Recursos de acessibilidade</h2>
             <table class="table table-hover">
             <thead>
                 <tr class="table-info">
                     <th scope="col">Recurso de Acessibilidade</th>
-                    <th scope="col">Possui ou Não Possui</th>
+                    <th scope="col">Necessita ou Não Necessita</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,9 +82,18 @@
                 @endforeach
             </tbody>
             </table>
+
+            <br><br>
+                <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{route('candidato.verVagasRecomendadas')}}" style="text-decoration: none; margin-right: 20px;">
+                          <div style="background-color: #265894; padding: 10px; border: none; border-radius: 10px; color: white;" class="EditarExcluir">
+                            <span>Voltar</span>
+                          </div>
+                        </a>
+                </div><br><br><br><br>
+
         </div>
     </section>
-
     
     <x-footer />
 </body>

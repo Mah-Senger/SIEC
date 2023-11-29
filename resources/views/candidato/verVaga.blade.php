@@ -53,7 +53,7 @@
         <div class="d-flex flex-column text-start">
             <h2 class="fs-2 fw-bold">Informações da vaga</h2>
             <div class="main-texto">
-                <ul><h4>Empresa Responsável: {{$empresa->nome}}</h4></ul>
+                <ul><h4>Empresa Responsável: <a href="">{{$empresa->nome}}</a></h4></ul>
                 <ul><h4>Requisitos e habilidades</h4></ul>
                 @foreach ($habilidadesVaga as $habilidade)
                     <ul>{{$habilidade['nomeHabilidade']}}</ul>
@@ -76,6 +76,14 @@
             <h2 class="fs-2 fw-bold">Tempo de Contrato</h2>
             <p class="lh-base">O contrato terá duração de {{$vaga->tempoContrato}} meses.</p>
         </div>
+
+        <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{route('candidato.verVagasRecomendadas')}}" style="text-decoration: none; margin-right: 20px;">
+                          <div style="background-color: #265894; padding: 10px; border: none; border-radius: 10px; color: white;" class="EditarExcluir">
+                            <span>Voltar</span>
+                          </div>
+                        </a><br><br><br><br>
+                </div><br><br><br><br>
     </section>
     
     <x-footer />
