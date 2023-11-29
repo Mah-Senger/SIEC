@@ -40,9 +40,16 @@
      <li>
        <a href="#">
          <i class='bx bx-heart' ></i>
-         <span class="links_name">Interesses</span>
+         <span class="links_name">Interesse em candidatos</span>
        </a>
-       <span class="tooltip">Interesses</span>
+       <span class="tooltip">Interesse em candidatos</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-heart' ></i>
+         <span class="links_name">Interesse em vagas</span>
+       </a>
+       <span class="tooltip">Interesse em vagas</span>
      </li>
      <li class="profile">
          <div class="profile-details">
