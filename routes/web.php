@@ -54,7 +54,7 @@ if(isset($_SESSION['usuario'])){
 
         Route::get('/vaga/interesseCreate/{id}/{idUsuario}', [App\Http\Controllers\InteresseVagasController::class, 'createInteresseVaga'])->name('vaga.createInteresse'); //Manifestar interesse na vaga
 
-        Route::get('/candidato/delete/{idUsuario}', [App\Http\Controllers\CandidatoController::class, 'deleteCandidato'])->name('candidato.delete'); //Deletar conta
+        Route::get('/candidato/delete', [App\Http\Controllers\CandidatoController::class, 'deleteCandidato'])->name('candidato.delete'); //Deletar conta
 
         Route::get('/candidato/editar', [App\Http\Controllers\CandidatoController::class, 'editarCandidato'])->name('candidato.editarCandidato'); //Editar conta
 
@@ -67,6 +67,10 @@ if(isset($_SESSION['usuario'])){
         Route::get('/candidato/verInteressesEmMim', [App\Http\Controllers\CandidatoController::class, 'verInteressesEmMim'])->name('candidato.verInteressesEmMim');
         
         Route::post('/candidato/verCandidato', [App\Http\Controllers\EmpresaController::class, 'verCandidato'])->name('candidato.verCandidato'); //selecionar todos os candidatos
+
+        Route::get('/candidato/verEmpresa/{id}', [App\Http\Controllers\CandidatoController::class, 'showDetalhesEmpresa'])->name('candidato.showDetalhesEmpresa');
+
+        Route::get('/candidato/verPerfil', [App\Http\Controllers\CandidatoController::class, 'showDetalhesCandidato'])->name('candidato.showDetalhesCandidato');
     }
     
     if($_SESSION['usuario']['tipoUser'] == "empresa"){

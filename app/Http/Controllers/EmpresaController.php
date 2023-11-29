@@ -136,7 +136,7 @@ class EmpresaController extends Controller{
 
     public function showDetalhesEmpresa(){
         $id = $_SESSION['usuario']['id'];
-        if(!$empresa = Empresa::find($id)){
+        if(!$empresa = Empresa::where('idusuario', '=', $id)->get()){
             return redirect()->back();
         }
         $usuario = Usuarios::find($empresa->idUsuario);

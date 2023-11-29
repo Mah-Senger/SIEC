@@ -150,14 +150,15 @@ class CandidatoController extends Controller
         return view('candidato.verTodasVagas', compact('todasVagas'));
     }
 
-    public function deleteCandidato($idUsuario){
+    public function deleteCandidato(){
+        $idUsuario = $_SESSION['usuario']['id'];
         $usuario = Usuarios::where('id', '=', $idUsuario);
         $usuario->delete();
         return redirect()->route('index');
     }
 
     public function editarCandidato(){
-        $idUsuario = 3;
+        $idUsuario = $_SESSION['usuario']['id'];
         $usuario = Usuarios::where('id', '=', $idUsuario)->get()[0];
         $candidato = Candidato::where('idUsuario', '=', $idUsuario)->get()[0];
         // dd($usuario);
@@ -297,5 +298,48 @@ class CandidatoController extends Controller
             return view('candidato.verInteressesEmMim', compact('empresas'));
         }
         return view('candidato.verInteressesEmMim');
+    }
+
+    public function showDetalhesEmpresa($id){
+        if(!$empresa = Empresa::find($id)){
+            return redirect()->back();
+        }
+        $usuario = Usuarios::find($empresa->idUsuario);
+        $usuario->nome = ucwords ($usuario->nome);
+        $recursos = RecursosAcessibilidade::where('idUsuario', '=', $id)->get()[0];
+        $recursosTratados = array();
+        $lista = ["comunicacaoLibras", "banheirosAcessiveis", "corredoresAcessiveis", "rampas", "elevadores", "contBraile", "espacoAmploParaLocomocao"];
+        foreach($lista as $i){
+            if($recursos[$i] == true){
+                $info = ['recursos' => $i, 'status' => 'Sim'];
+            }else{
+                $info = ['recursos' => $i, 'status' => 'Não'];
+            }
+            array_push($recursosTratados, $info);
+        }
+        // dd($recursosTratados);
+        return view('empresa.perfilEmpresa', compact('empresa', 'usuario', 'recursosTratados'));
+    }
+
+    public function showDetalhesCandidato(){
+        $id = $_SESSION['usuario']['id'];
+        if(!$candidato = Candidato::where('idUsuario', '=', $id)->get()[0]){
+            return redirect()->back();
+        }
+        $usuario = Usuarios::find($id);
+        $usuario->nome = ucwords ($usuario->nome);
+        $recursos = RecursosAcessibilidade::where('idUsuario', '=', $id)->get()[0];
+        $recursosTratados = array();
+        $lista = ["comunicacaoLibras", "banheirosAcessiveis", "corredoresAcessiveis", "rampas", "elevadores", "contBraile", "espacoAmploParaLocomocao"];
+        foreach($lista as $i){
+            if($recursos[$i] == true){
+                $info = ['recursos' => $i, 'status' => 'Sim'];
+            }else{
+                $info = ['recursos' => $i, 'status' => 'Não'];
+            }
+            array_push($recursosTratados, $info);
+        }
+        // dd($recursosTratados);
+        return view('candidato.perfilCandidato', compact('candidato', 'usuario', 'recursosTratados'));
     }
 }
