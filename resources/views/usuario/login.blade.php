@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-    <link rel="shortcut icon" type="imagex/png" href="{{asset("images/siec.ico")}}">
+    <link rel="shortcut icon" type="imagex/png" href="{{asset('images/siec.ico')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,10 +12,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     <style>
       section {
-        color:#265894;
-        margin-top: 10%;
-        margin-left: auto;
-        margin-right: auto;
+      color:#265894;
+      margin-top: 10%; 
+      }
+
+      .container {
+      display: center;
+      align-items: center;
+      justify-content: center;
+      margin: left 20px;
+      margin: right 20px;
       }
 
     </style>
@@ -46,17 +52,12 @@
                 <input type="text" name="email" id="email" class="form-control my-3 py-2" placeholder="Email">
                 <label>Senha:</label>
                 <input type="password" name="senha" id="senha" class="form-control my-3 py-2" placeholder="Senha">
-                <div class="esqueceuSenha">
-                  <div class="text-left">
-                    <a href="#">Esqueceu a senha?</a>
-                  </div>
                   <div class="botao text-center">
                     <input type="submit" style="margin-top:20px; width:580px; height:35px; background:#265894; " class="btn btn-primary botaoenviar" value="Entrar">
                   </div>
                   <div class="cadastre" style="margin-top:20px; text-align:center;" value="entrar">
-                    <a href="#">Cadastre-se</a>
+                    <a href="{{route('usuario.selecionarTipoCadastro')}}">Cadastre-se</a>
                   </div>
-                </div>
               </form>
             </div>
           </div>
