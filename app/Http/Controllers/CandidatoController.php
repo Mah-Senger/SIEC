@@ -121,15 +121,15 @@ class CandidatoController extends Controller
                 }
             }
 
-            $_SESSION['usuario']['id'] = $idUsuario;
+            /*$_SESSION['usuario']['id'] = $idUsuario;
             $_SESSION['usuario']['nome'] = $request->nomeCandidato;
             $_SESSION['usuario']['email'] = $request->emailCandidato;
             $_SESSION['usuario']['senha'] = $request->senhaCandidato;
             $_SESSION['usuario']['telefone'] = $request->telefoneCandidato;
             $_SESSION['usuario']['cidade'] = $request->cidadeCandidato;
-            $_SESSION['usuario']['tipoUser'] = 'candidato';
+            $_SESSION['usuario']['tipoUser'] = 'candidato';*/
 
-            return redirect()->back();
+            return redirect()->route('login');
         }
     }
 
@@ -173,12 +173,21 @@ class CandidatoController extends Controller
                     'idiomas' => $candidato->idiomas,
                     'formacao' => $candidato->formacao, 
                     'formacaoDescricao' => $candidato->formacaoDescricao];
+
+                    /*$habilidades = Habilidades::all();
+                    $habilidadesCandidato = HabilidadesCandidato::where('idCandidato', '=', $candidato->id)->get();
+                    $habNecCandidatos = array();
+                    foreach($habilidadesCandidato as $habilidadeCandidato){
+                    $nomeCandidatoNec = Habilidades::where('id', '=', $habilidadeCandidato->idHabilidade)->get()[0];
+                    array_push($habNecCandidatos, $nomeCandidatoNec);
+                }
+            // return view('candidato.editar', compact('usuariosCandidatos'));*/
         // dd($usuariosCandidatos);
         return view('candidato.editar', compact('usuariosCandidatos'));
     }
 
     public function updateCandidato(Request $request){
-        $idUsuario = 3;
+        $idUsuario = $_SESSION['usuario']['id'];;
         $rules = [
             'nomeCandidato' => ['required', 'string', 'max:255'],
             'emailCandidato' => ['required', 'string'],
@@ -191,7 +200,24 @@ class CandidatoController extends Controller
             'formacaoCandidato' => ['required', 'string'],
             'formacaoDescricaoCandidato' => ['required', 'string']
         ];
-        $request->validate($rules);
+        $mensagem = [
+            'nomeCandidato.required'=>'Preencher o campo "Nome Completo" é obrigatório.',
+            'emailCandidato.required' => 'Preencher o campo "E-mail" é obrigatório.',
+            'senhaCandidato.required'=>'Preencher o campo "Senha" é obrigatório.',
+            'senhaCandidato.min'=>'O campo "Senha" precisa ter no mínimo 8 caracteres.',
+            'senhaCandidato.max'=>'O campo "Senha" tem o limite de 20 caracteres.',
+            'telefoneCandidato.required' =>'Preencher o campo "Telefone" é obrigatório.',
+            'cidadeCandidato.required' =>'Preencher o campo "Cidade" é obrigatório.',
+            'cpfCandidato.required' =>'Preencher o campo "CPF(Cadastro de Pessoa Física)" é obrigatório.',
+            'cpfCandidato.min' =>'O campo "CPF(Cadastro de Pessoa Física)" precisa ter 11 caracteres.',
+            'cpfCandidato.max' =>'O campo "CPF(Cadastro de Pessoa Física)" precisa ter 11 caracteres.',
+            'experienciaCandidato.required' =>'Preencher o campo "Experiência" é obrigatório.',
+            'idiomasCandidato.required' =>'Preencher o campo "Idiomas fluentes" é obrigatório.',
+            'formacaoCandidato.required' =>'Preencher o campo "Formação" é obrigatório.',
+            'formacaoDescricaoCandidato.required' => 'Preencher o campo "Descrição da Formação" é obrigatório.',
+            'confirmarSenhaCandidato.required'  => 'Preencher o campo "Confirmar senha" é obrigatório.'
+        ];
+        $request->validate($rules,$mensagem);
         $senha = \Hash::make($request['senhaCandidato']);
 
         if($request->senhaCandidato == $request->confirmarSenhaCandidato){
@@ -208,11 +234,9 @@ class CandidatoController extends Controller
                     'idiomas' => $request->idiomasCandidato,
                     'formacao' => $request->formacaoCandidato,
                     'formacaoDescricao' => $request->formacaoDescricaoCandidato]);
-            
-            print('deu certo');
-            // return view('candidato.editar', compact('usuariosCandidatos'));
         }
-            return redirect()->back();
+        //return view('candidato.showDetalhesCandidato', compact('candidato', 'habilidades', 'habNecCandidatos'));
+        return redirect()->route('candidato.showDetalhesCandidato');
     }
 
     public function verVagasRecomendadas(){
@@ -330,7 +354,7 @@ class CandidatoController extends Controller
         $usuario->nome = ucwords ($usuario->nome);
         $recursos = RecursosAcessibilidade::where('idUsuario', '=', $id)->get()[0];
         $recursosTratados = array();
-        $lista = ["comunicacaoLibras", "banheirosAcessiveis", "corredoresAcessiveis", "rampas", "elevadores", "contBraile", "espacoAmploParaLocomocao"];
+        $lista = ["Comunicação em Libras", "Banheiros Acessíveis", "Corredores Acessíveis", "Rampas", "Elevadores", "Conteúdo em Braile", "Espaço Amplo para Locomoção"];
         foreach($lista as $i){
             if($recursos[$i] == true){
                 $info = ['recursos' => $i, 'status' => 'Sim'];
@@ -339,7 +363,13 @@ class CandidatoController extends Controller
             }
             array_push($recursosTratados, $info);
         }
+        $habilidadesCandidato = array();
+        $habilidades = HabilidadesCandidato::where('idCandidato', '=', $id)->get();
+        foreach($habilidades as $hab){
+            $habilidadeNome = Habilidades::where('id', '=', $hab->idHabilidade)->get()[0];
+            array_push($habilidadesCandidato, $habilidadeNome);
+        }
         // dd($recursosTratados);
-        return view('candidato.perfilCandidato', compact('candidato', 'usuario', 'recursosTratados'));
+        return view('candidato.perfilCandidato', compact('candidato', 'usuario', 'recursosTratados', 'habilidadesCandidato'));
     }
 }
