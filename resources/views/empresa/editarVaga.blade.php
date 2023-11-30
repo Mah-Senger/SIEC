@@ -63,7 +63,7 @@
             <input type="number" id="periodoPagamentoVaga" name="periodoPagamentoVaga" placeholder="Ex: 30" value="{{ $vaga['periodoPagamento'] }}" required>
           </div>
 
-          <h3>Habilidades que você possui: </h3>
+          <h3>Habilidades Necessárias: </h3>
           <div class="alert alert-danger">
             <p>É preciso escolher novamente as habilidades necessárias para a vaga. Durante o cadastro, foram marcadas as seguintes características: </p>
             @foreach ($habNecVagas as $habVaga)
@@ -75,7 +75,7 @@
            <input type="checkbox" name="habilidade{{$habilidade['id']}}" value="{{$habilidade['id']}}">{{$habilidade['nomeHabilidade']}}<br>            
           @endforeach
 
-          <button class="button" type="submit">Cadastrar</button>
+          <button class="button" type="submit">Editar</button>
           <br><br><br>
         </form><br><br><br>
 

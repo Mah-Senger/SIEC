@@ -124,7 +124,7 @@ if(isset($_SESSION['usuario'])){
 
         Route::post('/empresa/updateVaga', [App\Http\Controllers\VagaController::class, 'updateVaga'])->name('empresa.updateVaga'); //Processamento do editar da vaga
 
-        Route::get('/empresa/verEmpresa', [App\Http\Controllers\EmpresaController::class, 'showDetalhesEmpresa'])->name('empresa.showDetalhesEmpresa'); //Editar da vaga
+        Route::get('/empresa/verEmpresa', [App\Http\Controllers\EmpresaController::class, 'showDetalhesEmpresa'])->name('empresa.showDetalhesEmpresa'); //Meu perfil 
     }
 }
 

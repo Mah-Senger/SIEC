@@ -50,7 +50,7 @@
         </div><br>
         <div class="d-flex flex-column text-start">
             <h2 class="fs-2 fw-bold">Formação</h2>
-            <p class="lh-base">{{$candidato->experiencia}}</p>
+            <p class="lh-base">{{$candidato->formacao}}</p>
         </div><br>
         <div class="d-flex flex-column text-start">
             <h2 class="fs-2 fw-bold">Descrição da Formação</h2>

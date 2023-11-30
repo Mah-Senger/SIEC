@@ -173,6 +173,15 @@ class CandidatoController extends Controller
                     'idiomas' => $candidato->idiomas,
                     'formacao' => $candidato->formacao, 
                     'formacaoDescricao' => $candidato->formacaoDescricao];
+
+                    /*$habilidades = Habilidades::all();
+                    $habilidadesCandidato = HabilidadesCandidato::where('idCandidato', '=', $candidato->id)->get();
+                    $habNecCandidatos = array();
+                    foreach($habilidadesCandidato as $habilidadeCandidato){
+                    $nomeCandidatoNec = Habilidades::where('id', '=', $habilidadeCandidato->idHabilidade)->get()[0];
+                    array_push($habNecCandidatos, $nomeCandidatoNec);
+                }
+            // return view('candidato.editar', compact('usuariosCandidatos'));*/
         // dd($usuariosCandidatos);
         return view('candidato.editar', compact('usuariosCandidatos'));
     }
@@ -225,10 +234,8 @@ class CandidatoController extends Controller
                     'idiomas' => $request->idiomasCandidato,
                     'formacao' => $request->formacaoCandidato,
                     'formacaoDescricao' => $request->formacaoDescricaoCandidato]);
-            
-            print('deu certo');
-            // return view('candidato.editar', compact('usuariosCandidatos'));
         }
+        //return view('candidato.showDetalhesCandidato', compact('candidato', 'habilidades', 'habNecCandidatos'));
         return redirect()->route('candidato.showDetalhesCandidato');
     }
 

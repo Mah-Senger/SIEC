@@ -25,7 +25,7 @@
         </div>
     @endif
     <div class="container">
-    <div class="title">Editar informações da Empresa</div><br>
+    <div class="title">Editar informações do Candidato</div><br>
     <div class="content">
 
     <form action="{{ route('candidato.updateCandidato') }}" method="post">
@@ -96,6 +96,19 @@
         <label for="formacaoDescricaoCandidato">Descrição da formação: </label>
         <textarea name="formacaoDescricaoCandidato" id="formacaoDescricaoCandidato" value="">{{ $usuariosCandidatos['formacaoDescricao'] }}</textarea><br>
         </div>
+
+        <h3>Habilidades que Possui: </h3>
+          <div class="alert alert-danger">
+            <p>É preciso escolher novamente as suas habilidades. Durante o cadastro, foram marcadas as seguintes características: </p>
+            @foreach ($habNecCandidatos as $habCandidato)
+                <ul>{{ $habCandidato['nomeHabilidade'] }}</ul>
+            @endforeach
+          </div>
+          <label class="details">Pode escolher quantas desejar</label><br><br>
+          @foreach ($habilidades as $habilidade)
+           <input type="checkbox" name="habilidade{{$habilidade['id']}}" value="{{$habilidade['id']}}">{{$habilidade['nomeHabilidade']}}<br>            
+          @endforeach
+
         <button type="submit" class="button">Editar</button>
     </form><br><br><br><br><br><br><br><br>
 </div>
