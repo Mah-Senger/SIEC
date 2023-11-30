@@ -24,7 +24,7 @@
          <span class="tooltip">Ver Candidatos</span>
       </li>
       <li>
-       <a href="#">
+       <a href="{{ route('empresa.showDetalhesEmpresa')}}">
          <i class='bx bx-user' ></i>
          <span class="links_name">Meu perfil</span>
        </a>
@@ -38,7 +38,7 @@
        <span class="tooltip">Vagas cadastradas</span>
      </li>
      <li>
-       <a href="#">
+       <a href="{{ route('empresa.verInteressesEmVagas') }}">
          <i class='bx bx-heart' ></i>
          <span class="links_name">Interesse em candidatos</span>
        </a>

@@ -20,7 +20,7 @@
         <div class="profile-details">
           <div class="alinharBotao">
             <i class='bx bx-user' ></i>
-            <p>Teste empresa</p>
+            <p>{{ $_SESSION['usuario']['nome'] }}</p>
           </div>
 
       <li>
@@ -54,6 +54,13 @@
     </ul>
   </div>
   <div class="conteudo open">
+  <div class="texto">
+    @if(isset($erro))
+      <div class="alert alert-danger">
+        <p>Você não atingiu 60% do aproveitamento do minicurso. Mas não se preocupe, você pode ler e assistir novamente as aulas e realizar uma nova tentativa do questionário. Bons estudos!</p>
+      </div>
+    @endif
+  </div>
     <div class="curso">
         <h1>Aula 01: A importância do trabalho na vida humana</h1>
     <div class="texto">

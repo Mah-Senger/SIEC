@@ -53,8 +53,8 @@
 <x-header />
 <div class="all">
   <div class="jumbotron">
-    <p class="lead">Parabéns! Você concluiu com êxito o curso. Agora podemos continuar com o seu cadastro.</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Continuar</a>
+    <p class="lead">Parabéns! Você concluiu com êxito o curso. Agora já faz parte do time SIEC.</p>
+    <a class="btn btn-primary btn-lg" href="{{route('empresa.selecionarVaga')}}" role="button">Continuar</a>
   </div>
 </div>
 

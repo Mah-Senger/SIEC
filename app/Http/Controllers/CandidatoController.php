@@ -342,7 +342,7 @@ class CandidatoController extends Controller
             array_push($recursosTratados, $info);
         }
         // dd($recursosTratados);
-        return view('empresa.perfilEmpresa', compact('empresa', 'usuario', 'recursosTratados'));
+        return view('candidato.perfilEmpresa', compact('empresa', 'usuario', 'recursosTratados'));
     }
 
     public function showDetalhesCandidato(){
@@ -354,7 +354,7 @@ class CandidatoController extends Controller
         $usuario->nome = ucwords ($usuario->nome);
         $recursos = RecursosAcessibilidade::where('idUsuario', '=', $id)->get()[0];
         $recursosTratados = array();
-        $lista = ["Comunicação em Libras", "Banheiros Acessíveis", "Corredores Acessíveis", "Rampas", "Elevadores", "Conteúdo em Braile", "Espaço Amplo para Locomoção"];
+        $lista = ["comunicacaoLibras", "banheirosAcessiveis", "corredoresAcessiveis", "rampas", "elevadores", "contBraile", "espacoAmploParaLocomocao"];
         foreach($lista as $i){
             if($recursos[$i] == true){
                 $info = ['recursos' => $i, 'status' => 'Sim'];

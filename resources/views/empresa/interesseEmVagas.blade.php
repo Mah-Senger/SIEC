@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Ver minhas vagas</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver interesses em vagas</title>
     <link rel="shortcut icon" type="imagex/png" href="{{asset("images/siec.ico")}}">
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/pagina21.css')}}">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-   </head>
+</head>
 <body>
-<x-header />
-<main>
-<div id="dashboard">
+    <x-header />
+    <main>
+  <div id="dashboard">
   <div class="sidebar">
     <div class="logo-details">
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
-    <br>
+      <br>
       <li>
         <a href="{{ route('empresa.selecionarVaga') }}">
           <i class='bx bx-grid-alt'></i>
@@ -29,7 +33,7 @@
          <span class="tooltip">Ver Candidatos</span>
       </li>
       <li>
-       <a href="{{ route('empresa.showDetalhesEmpresa') }}">
+       <a href="{{route("empresa.showDetalhesEmpresa")}}">
          <i class='bx bx-user' ></i>
          <span class="links_name">Meu perfil</span>
        </a>
@@ -43,14 +47,14 @@
        <span class="tooltip">Vagas cadastradas</span>
      </li>
      <li>
-       <a href="{{ route('empresa.verInteresses') }}">
+       <a href="#">
          <i class='bx bx-heart' ></i>
          <span class="links_name">Interesse em candidatos</span>
        </a>
        <span class="tooltip">Interesse em candidatos</span>
      </li>
      <li>
-       <a href="{{ route('empresa.verInteressesEmVagas') }}">
+       <a href="#">
          <i class='bx bx-heart' ></i>
          <span class="links_name">Interesse em vagas</span>
        </a>
@@ -60,7 +64,7 @@
          <div class="profile-details">
             <i class='bx bx-user' ></i>
            <div class="name_job">
-             <div class="name">{{$_SESSION['usuario']['nome']}}</div>
+             <div class="name">{{ $_SESSION['usuario']['nome'] }}</div>
              <div class="job">Perfil: Empresa</div>
            </div>
          </div>
@@ -69,27 +73,24 @@
     </ul>
   </div>
 </div>
-<div class="conteudo">
-    <section class="main-pesquisa">
+ <section class="main-pesquisa">
             <div class="main-pesquisa-header">
-                <form action="/empresa/verVagasCadastradas" method="get">
-                    <input type="text" name="search" class="main-pesquisa-input" placeholder="Pesquisar...">
-                    <button type="submit" class="main-pesquisa-botao">Enviar</button>
+                <form action="" method="post">
+                    <input type="search" class="main-pesquisa-input" placeholder="Pesquisar...">
+                    <button class="main-pesquisa-botao">Enviar</button>
                 </form>
-                <a href="{{ route('empresa.cadastroVaga') }}">Nova vaga</a>
             </div>
             <div class="main-pesquisa-conteudo">
-            @foreach ($vagas as $vaga)
-                <div class="main-pesquisa-link">
-                    <span><a href="{{ route('vaga.showDetalhesVagaEmpresa', $vaga['id']) }}">{{ $vaga['titulo'] }}</a>: {{ $vaga['descricao']}}</span>
-                </div>
-            @endforeach
+                @foreach ($manifestacoesInteresse as $interesse)
+                    <div class="main-pesquisa-link">
+                        <span><a href="#">{{ $interesse['nomeCandidato']}}</a> manifestou interesse na vaga {{ $interesse['tituloVaga']}}</span>
+                    </div>
+                @endforeach
             </div>
-      </section>
-  </div>
+        </section>
 </main>
-<x-footer />
-  <script>
+   <x-footer />
+   <script>
   let sidebar = document.querySelector(".sidebar");
   let conteudo = document.querySelector(".conteudo");
   let closeBtn = document.querySelector("#btn");

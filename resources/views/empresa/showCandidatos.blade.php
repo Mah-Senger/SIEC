@@ -33,7 +33,7 @@
          <span class="tooltip">Ver Candidatos</span>
       </li>
       <li>
-       <a href="{{ route('empresa.editarEmpresa') }}">
+       <a href="{{ route('empresa.showDetalhesEmpresa') }}">
          <i class='bx bx-user' ></i>
          <span class="links_name">Meu perfil</span>
        </a>
@@ -54,7 +54,7 @@
        <span class="tooltip">Interesse em candidatos</span>
      </li>
      <li>
-       <a href="#">
+       <a href="{{ route('empresa.verInteressesEmVagas') }}">
          <i class='bx bx-heart' ></i>
          <span class="links_name">Interesse em vagas</span>
        </a>
@@ -83,7 +83,7 @@
             <div class="main-pesquisa-conteudo">
               @foreach ($candidatosSelecionados as $candidato)
                 <div class="main-pesquisa-link">
-                    <span><a href="#">{{ $candidato['nome'] }} ({{ $candidato['cidade'] }} - SP)</a></span><br>
+                    <span><a href="{{route('empresa.perfilCandidato', $candidato['idUsuario'])}}">{{ $candidato['nome'] }} ({{ $candidato['cidade'] }} - SP)</a></span><br>
                     <span>{{ $candidato['formacao'] }}</span><br>
                 </div>
               @endforeach

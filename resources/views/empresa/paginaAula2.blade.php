@@ -20,7 +20,7 @@
         <div class="profile-details">
           <div class="alinharBotao">
             <i class='bx bx-user' ></i>
-            <p>Teste empresa</p>
+            <p>{{ $_SESSION['usuario']['nome'] }}</p>
           </div>
 
       <li>

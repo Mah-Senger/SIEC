@@ -84,7 +84,7 @@ if(isset($_SESSION['usuario'])){
 
         Route::get('/empresa/selecionarVaga', [App\Http\Controllers\EmpresaController::class, 'selecionarVaga'])->name('empresa.selecionarVaga'); //Selecionar qual vaga deseja ver candidatos recomendados
 
-        Route::get('/empresa/delete/{idUsuario}', [App\Http\Controllers\EmpresaController::class, 'deleteEmpresa'])->name('empresa.delete'); //Apagar conta usuario 
+        Route::get('/empresa/delete', [App\Http\Controllers\EmpresaController::class, 'deleteEmpresa'])->name('empresa.delete'); //Apagar conta usuario 
 
         Route::get('/empresa/deleteVaga/{idVaga}', [App\Http\Controllers\VagaController::class, 'deleteVaga'])->name('empresa.deleteVaga'); //Apagar vaga 
 
@@ -113,8 +113,10 @@ if(isset($_SESSION['usuario'])){
         })->name('empresa.aula4');
 
         Route::get('/empresa/questionario', function () {
-            return view('empresa.questionario');
+            return view('empresa.questionario2');
         })->name('empresa.questionario');
+
+        Route::post('/empresa/procQuest', [App\Http\Controllers\EmpresaController::class, 'procQuest'])->name('empresa.procQuest'); //Processamento do cadastro de vaga
 
         Route::get('/empresa/cadastroVaga', [App\Http\Controllers\VagaController::class, 'cadastroVaga'])->name('empresa.cadastroVaga'); //Cadastro de vaga
 
@@ -125,6 +127,12 @@ if(isset($_SESSION['usuario'])){
         Route::post('/empresa/updateVaga', [App\Http\Controllers\VagaController::class, 'updateVaga'])->name('empresa.updateVaga'); //Processamento do editar da vaga
 
         Route::get('/empresa/verEmpresa', [App\Http\Controllers\EmpresaController::class, 'showDetalhesEmpresa'])->name('empresa.showDetalhesEmpresa'); //Meu perfil 
+
+        Route::get('/showVaga/{id}', [App\Http\Controllers\VagaController::class, 'showDetalhesVagaEmpresa'])->name('vaga.showDetalhesVagaEmpresa'); //Mostrar uma vaga
+
+        Route::get('/empresa/interessesVagas', [App\Http\Controllers\EmpresaController::class, 'verInteressesEmVagas'])->name('empresa.verInteressesEmVagas'); //Mostrar uma vaga
+
+        Route::get('/empresa/perfilCandidato/{id}', [App\Http\Controllers\EmpresaController::class, 'perfilCandidato'])->name('empresa.perfilCandidato'); //Mostrar uma vaga
     }
 }
 

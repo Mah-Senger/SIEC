@@ -39,6 +39,30 @@ class VagaController extends Controller
         return view('candidato.verVaga', compact('vaga', 'habilidadesVaga', 'empresa'));
     }
 
+    public function showDetalhesVagaEmpresa($id){
+        if(!$vaga = Vagas::find($id)){
+            return redirect()->back();
+        }
+        $habilidadesVaga = array();
+            $habilidades = HabilidadesVaga::where('idVaga', '=', $id)->get();
+            foreach($habilidades as $hab){
+                $habilidadeNome = Habilidades::where('id', '=', $hab->idHabilidade)->get()[0];
+                array_push($habilidadesVaga, $habilidadeNome);
+            }
+        // dd($habilidadesVaga);
+        $empresa = Usuarios::find($vaga->idUsuario);
+        // $idUsuario = 3;
+        $idUsuario = $_SESSION['usuario']['id'];
+        $validacao = InteresseVagas::where('idVaga', '=', "$id")->where('idCandidato', '=', "$idUsuario")->get();
+        foreach($validacao as $valid){
+            if(isset($valid->idCandidato)){
+                $validacaoInteresse = $valid->idCandidato;
+                return view('empresa.verVaga', compact('vaga', 'habilidadesVaga', 'empresa', 'validacaoInteresse'));
+            }
+        }
+        return view('empresa.verVaga', compact('vaga', 'habilidadesVaga', 'empresa'));
+    }
+
     public function deleteVaga($idVaga){
         $vaga = Vagas::where('id', '=', $idVaga);
         $vaga->delete();

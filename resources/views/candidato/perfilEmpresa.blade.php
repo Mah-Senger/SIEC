@@ -55,6 +55,13 @@
                 @endforeach
             </tbody>
             </table>
+            <div class="d-flex justify-content-between align-items-center">
+                        <a href="#" style="text-decoration: none; margin-right: 20px;">
+                          <div style="background-color: #265894; padding: 10px; border: none; border-radius: 10px; color: white;" class="EditarExcluir">
+                            <span>Voltar</span>
+                          </div>
+                        </a>
+                </div><br><br><br><br>
         </div>
     </section>
 

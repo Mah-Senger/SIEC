@@ -97,7 +97,7 @@
         <textarea name="formacaoDescricaoCandidato" id="formacaoDescricaoCandidato" value="">{{ $usuariosCandidatos['formacaoDescricao'] }}</textarea><br>
         </div>
 
-        <h3>Habilidades que Possui: </h3>
+        {{-- <h3>Habilidades que Possui: </h3>
           <div class="alert alert-danger">
             <p>É preciso escolher novamente as suas habilidades. Durante o cadastro, foram marcadas as seguintes características: </p>
             @foreach ($habNecCandidatos as $habCandidato)
@@ -107,7 +107,7 @@
           <label class="details">Pode escolher quantas desejar</label><br><br>
           @foreach ($habilidades as $habilidade)
            <input type="checkbox" name="habilidade{{$habilidade['id']}}" value="{{$habilidade['id']}}">{{$habilidade['nomeHabilidade']}}<br>            
-          @endforeach
+          @endforeach --}}
 
         <button type="submit" class="button">Editar</button>
     </form><br><br><br><br><br><br><br><br>

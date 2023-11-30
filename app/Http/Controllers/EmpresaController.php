@@ -7,6 +7,7 @@ use App\Models\Empresa;
 use App\Models\Candidato;
 use App\Models\Vagas;
 use App\Models\InteresseCandidatos;
+use App\Models\InteresseVagas;
 use App\Models\Habilidades;
 use App\Models\RecursosAcessibilidade;
 use App\Models\RequisitosHabilidadesVagas;
@@ -135,8 +136,9 @@ class EmpresaController extends Controller{
     }
 
     public function showDetalhesEmpresa(){
+        // $id = $_SESSION['usuario']['id'];
         $id = $_SESSION['usuario']['id'];
-        if(!$empresa = Empresa::where('idusuario', '=', $id)->get()){
+        if(!$empresa = Empresa::where('idusuario', '=', $id)->get()[0]){
             return redirect()->back();
         }
         $usuario = Usuarios::find($empresa->idUsuario);
@@ -259,7 +261,8 @@ class EmpresaController extends Controller{
         return view('empresa.verVagasCadastradas', compact('vagas')); 
     }
 
-    public function deleteEmpresa($idUsuario){
+    public function deleteEmpresa(){
+        $idUsuario = $_SESSION['usuario']['id'];
         $usuario = Usuarios::where('id', '=', $idUsuario);
         $usuario->delete();
         return redirect()->route('index');
@@ -333,8 +336,8 @@ class EmpresaController extends Controller{
         $validacao = InteresseCandidatos::where('idEmpresa', '=', "$idEmpresa")->where('idCandidato', '=', "$idCandidato")->get();
         foreach($validacao as $valid){
             if(isset($valid->idCandidato)){
-                print("erro");
-                // return redirect()->back()->with('erro', 'Manifestação de interesse enviada com sucesso!');
+                // print("erro");
+                return redirect()->back()->with('erro', 'Manifestação de interesse enviada com sucesso!');
             }
         }
         
@@ -343,8 +346,8 @@ class EmpresaController extends Controller{
             'idCandidato' => $idCandidato,
         ]);
 
-        print("deu certo");
-        // return redirect()->back()->with('status', 'Manifestação de interesse enviada com sucesso!');
+        // print("deu certo");
+        return redirect()->back()->with('status', 'Manifestação de interesse enviada com sucesso!');
     }
 
     public function verInteresses(){
@@ -359,5 +362,83 @@ class EmpresaController extends Controller{
         // dd($infos);
         return view('empresa.verInteresses', compact('infos'));
     }
+
+    public function procQuest(Request $request){
+        $count = 0;
+        if($request->questao1 == "falso"){
+            $count++;
+        }
+        if($request->questao2 == 'a'){
+            $count++;
+        }
+        if($request->questao3 == 'c'){
+            $count++;
+        }
+        if($request->questao4 == 'b'){
+            $count++;
+        }
+        if($request->questao5 == 'b'){
+            $count++;
+        }
+        if($request->questao6 == 'a'){
+            $count++;
+        }
+        if($request->questao7 == 'b'){
+            $count++;
+        }
+        if($request->questao8 == 'b'){
+            $count++;
+        }
+        if($request->questao9 == 'a'){
+            $count++;
+        }
+        if($request->questao10 == 'c'){
+            $count++;
+        }
+        if($count >= 6){
+            return view('empresa.finalCurso');
+        }else{
+            return view('empresa.paginaAula1', ['erro' => 'erro']);
+        }
+    }
+
+    public function verInteressesEmVagas(){
+        $idUsuario = $_SESSION['usuario']['id'];
+        $vagas = Vagas::where("idUsuario", '=', $idUsuario)->get();
+        $manifestacoesInteresse = array();
+        foreach($vagas as $vaga){
+            $manifInteresses = InteresseVagas::where('idVaga', '=', $vaga->id)->get();
+            foreach($manifInteresses as $interesses){
+                $candidatoUser = Usuarios::where('id', '=', $interesses->idCandidato)->get()[0];
+                $tituloVaga = $vaga->titulo;
+                $info = ['tituloVaga' => $tituloVaga, 'nomeCandidato' => $candidatoUser->nome];
+                array_push($manifestacoesInteresse, $info);
+            }
+        }
+        return view('empresa.interesseEmVagas', compact('manifestacoesInteresse'));
+    }
             
+    public function perfilCandidato($id){
+        $usuario = Usuarios::where('id', '=', $id)->get()[0];
+        $candidato = Candidato::where('idUsuario', '=', $id)->get()[0];
+        $recursos = RecursosAcessibilidade::where('idUsuario', '=', $id)->get()[0];
+        $recursosTratados = array();
+        $lista = ["comunicacaoLibras", "banheirosAcessiveis", "corredoresAcessiveis", "rampas", "elevadores", "contBraile", "espacoAmploParaLocomocao"];
+        foreach($lista as $i){
+            if($recursos[$i] == true){
+                $info = ['recursos' => $i, 'status' => 'Sim'];
+            }else{
+                $info = ['recursos' => $i, 'status' => 'Não'];
+            }
+            array_push($recursosTratados, $info);
+        }
+        $habilidadesCandidato = array();
+        $habilidades = HabilidadesCandidato::where('idCandidato', '=', $id)->get();
+        foreach($habilidades as $hab){
+            $habilidadeNome = Habilidades::where('id', '=', $hab->idHabilidade)->get()[0];
+            array_push($habilidadesCandidato, $habilidadeNome);
+        }
+        // dd($recursosTratados);
+        return view('empresa.perfilCandidato', compact('candidato', 'usuario', 'recursosTratados', 'habilidadesCandidato'));
+    }
 }
