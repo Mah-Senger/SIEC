@@ -60,7 +60,7 @@
         <h1>Aula 03: Minha empresa não se encaixa na Lei de Cotas, e agora?</h1>
     <div class="texto">
         <p>Nessa aula vamos compreender que não só as empresas que precisam cumprir o estipulado pela Lei de Cotas podem contratar PcDs, mas todas que desejam pessoas competentes em seu time e ainda querem ajudar socialmente nessa inclusão.</p>
-        <iframe src="https://drive.google.com/file/d/1EMI4v5kDqMVfAJLZHEq0gKmVGta6xbmL/preview" width="960" height="540" allow="autoplay"></iframe>
+        <iframe src="https://drive.google.com/file/d/1Mu4WRPcXn_fWqxV8Fy8IumMINYUy922H/preview" width="960" height="540" allow="autoplay"></iframe>
         <div class="alinharBotao">
             <a href="{{ route('empresa.aula2') }}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Anterior</a>
             <a href="{{ route('empresa.aula4') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Próxima</a>

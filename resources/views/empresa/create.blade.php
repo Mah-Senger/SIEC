@@ -114,6 +114,7 @@
           <input type="checkbox" name="recurso4" value="1">Rampas<br>
           <input type="checkbox" name="recurso5" value="1">Elevadores<br>
           <input type="checkbox" name="recurso6" value="1">Conteúdo em braile<br>
+          <input type="checkbox" name="recurso7" value="1">Espaço amplo para locomoção<br>
         </div>
 
           <button class="button" type="submit">Cadastrar</button>
