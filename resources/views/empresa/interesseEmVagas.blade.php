@@ -47,7 +47,7 @@
        <span class="tooltip">Vagas cadastradas</span>
      </li>
      <li>
-       <a href="#">
+       <a href="{{ route('empresa.verInteresses') }}">
          <i class='bx bx-heart' ></i>
          <span class="links_name">Interesse em candidatos</span>
        </a>
