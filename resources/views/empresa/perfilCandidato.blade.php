@@ -27,7 +27,7 @@
             <div class="alert alert-success"  id="sucessoMsg" role="alert">
                 <h4 class="alert-heading">{{session('status')}}</h4>
                 <hr>
-                <p>Entraremos em contato com {{$usuario->nome}} para comunicar o seu interesse em nele. Estamos torcendo para que esse interesse seja recíproco.</p>
+                <p>Entraremos em contato com {{$usuario->nome}} para comunicar o seu interesse nele. Estamos torcendo para que esse interesse seja recíproco.</p>
             </div>
         @endif
         @if(session('erro'))

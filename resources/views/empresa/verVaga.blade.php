@@ -75,7 +75,7 @@
         </div>
 
         <div class="d-flex justify-content-between align-items-center">
-                        <a href="{{route('candidato.verVagasRecomendadas')}}" style="text-decoration: none; margin-right: 20px;">
+                        <a href="{{route('empresa.verVagasCadastradas')}}" style="text-decoration: none; margin-right: 20px;">
                           <div style="background-color: #265894; padding: 10px; border: none; border-radius: 10px; color: white;" class="EditarExcluir">
                             <span>Voltar</span>
                           </div>

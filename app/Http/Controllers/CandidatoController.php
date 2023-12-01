@@ -325,7 +325,7 @@ class CandidatoController extends Controller
     }
 
     public function showDetalhesEmpresa($id){
-        if(!$empresa = Empresa::find($id)){
+            if(!$empresa = Empresa::find($id)){
             return redirect()->back();
         }
         $usuario = Usuarios::find($empresa->idUsuario);

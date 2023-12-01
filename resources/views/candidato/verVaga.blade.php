@@ -42,7 +42,7 @@
                 <h1 class="fs-1">{{$vaga->titulo}}</h1>
             </div>
             <div class="main-header-button">
-                @if(isset($validacaoInteresse))
+            @if(session('erro'))
                     <button type="button" class="btn btn-secondary btn-lg" disabled >Manifestar interesse</button>
                 @else
                     <button onclick="confirmarManifestacao()">Manifestar interesse</button>
