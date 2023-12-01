@@ -355,10 +355,10 @@ class EmpresaController extends Controller{
         $empresa = Empresa::where('idUsuario', "=", $idEmpresa)->get()[0];
         $interesses = InteresseCandidatos::where('idEmpresa', '=', "$empresa->idUsuario")->get();
         $infos = array();
-        foreach($interesses as $interesse){
-            $candidato = Usuarios::where('id', '=', $interesse->idCandidato)->get()[0];
-            array_push($infos, $candidato);
-        }
+            foreach($interesses as $interesse){
+                $candidato = Usuarios::where('id', '=', $interesse->idCandidato)->get()[0];
+                array_push($infos, $candidato);
+            }
         // dd($infos);
         return view('empresa.verInteresses', compact('infos'));
     }

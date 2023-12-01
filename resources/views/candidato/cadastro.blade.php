@@ -99,9 +99,9 @@
         </div>
 
         <h3>Recursos de acessibilidade que necessita:</h3>
-          <input type="checkbox" name="recurso1" value="1">Interprete de libras<br>
-          <input type="checkbox" name="recurso2" value="1">Banheiros acessiveis<br>
-          <input type="checkbox" name="recurso3" value="1">Corredores acassiveis<br>
+          <input type="checkbox" name="recurso1" value="1">Intérprete de Libras<br>
+          <input type="checkbox" name="recurso2" value="1">Banheiros acessíveis<br>
+          <input type="checkbox" name="recurso3" value="1">Corredores acessíveis<br>
           <input type="checkbox" name="recurso4" value="1">Rampas<br>
           <input type="checkbox" name="recurso5" value="1">Elevadores<br>
           <input type="checkbox" name="recurso6" value="1">Conteúdo em braile<br>

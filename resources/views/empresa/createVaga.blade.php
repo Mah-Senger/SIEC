@@ -62,7 +62,7 @@
             <input type="number" id="periodoPagamentoVaga" name="periodoPagamentoVaga" placeholder="Ex: 30" value="{{ old('periodoPagamentoVaga') }}" required>
           </div>
 
-          <h3>Habilidades que você possui: </h3>
+          <h3>Habilidades requeridas na vaga: </h3>
           <label class="details">Pode escolher quantas desejar</label><br><br>
           @foreach ($habilidades as $habilidade)
            <input type="checkbox" name="habilidade{{$habilidade['id']}}" value="{{$habilidade['id']}}">{{$habilidade['nomeHabilidade']}}<br>            

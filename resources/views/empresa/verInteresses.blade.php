@@ -75,9 +75,9 @@
 </div>
  <section class="main-pesquisa">
             <div class="main-pesquisa-header">
-                <form action="" method="post">
-                    <input type="search" class="main-pesquisa-input" placeholder="Pesquisar...">
-                    <button class="main-pesquisa-botao">Enviar</button>
+                <form action="{{ route('empresa.verInteresses')}}" method="get">
+                    <input type="text" name="search" class="main-pesquisa-input" placeholder="Pesquisar...">
+                    <button type="submit" class="main-pesquisa-botao">Enviar</button>
                 </form>
             </div>
             <div class="main-pesquisa-conteudo">
